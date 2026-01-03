@@ -1,0 +1,163 @@
+{
+  "$schema": "./venture.schema.json",
+
+  "idea": "AI-powered platform that generates production-ready websites and SEO blog content from a business idea",
+  "name": "OpenVenture",
+  "tagline": "Launch Your Business in Minutes, Not Months",
+  "domain": "openventure.vercel.app",
+
+  "business": {
+    "industry": "saas",
+    "category": "Website Generator",
+    "target_audience": "Non-technical entrepreneurs, solo founders, early-stage startups who need a professional web presence quickly",
+    "pain_points": [
+      "Building a website takes weeks of development time",
+      "SEO content requires expensive copywriters",
+      "Technical founders waste time on marketing instead of product"
+    ],
+    "value_proposition": "Generate complete websites with SEO blog content in minutes using AI",
+    "unique_selling_points": [
+      "One config file generates entire web presence",
+      "10 SEO-optimized articles included",
+      "Production-ready Next.js code",
+      "One-click Vercel deployment"
+    ]
+  },
+
+  "competitors": {
+    "urls": [],
+    "analyze_design": true,
+    "analyze_copy": true,
+    "analyze_pricing": true
+  },
+
+  "brand": {
+    "tone": "professional",
+    "personality": ["innovative", "efficient", "trustworthy"],
+    "colors": {
+      "primary": "#000000",
+      "secondary": "#1B1B1B",
+      "accent": "#D4C7FF",
+      "background": "#FFFFFF",
+      "text": "#000000"
+    },
+    "fonts": {
+      "heading": "Inter",
+      "body": "Inter"
+    }
+  },
+
+  "landing_page": {
+    "enabled": true,
+    "sections": {
+      "hero": {
+        "enabled": true,
+        "style": "centered",
+        "include_video": false
+      },
+      "social_proof": {
+        "enabled": true,
+        "logo_count": 6
+      },
+      "features": {
+        "enabled": true,
+        "count": 6,
+        "layout": "grid"
+      },
+      "feature_showcase": {
+        "enabled": true,
+        "count": 3,
+        "layout": "alternating"
+      },
+      "pricing": {
+        "enabled": true,
+        "tiers": 3,
+        "currency": "USD",
+        "billing_period": "monthly"
+      },
+      "testimonials": {
+        "enabled": true,
+        "count": 3
+      },
+      "faq": {
+        "enabled": true,
+        "count": 8
+      },
+      "cta": {
+        "enabled": true,
+        "style": "gradient"
+      },
+      "footer": {
+        "enabled": true,
+        "columns": 4
+      }
+    }
+  },
+
+  "blog": {
+    "enabled": true,
+    "article_count": 10,
+    "locale": "en-US",
+    "seo": {
+      "primary_keyword": "AI website generator",
+      "secondary_keywords": [
+        "startup landing page generator",
+        "SEO blog content AI",
+        "launch business fast",
+        "AI content generation"
+      ],
+      "keyword_density": 1.5
+    },
+    "content": {
+      "min_word_count": 2000,
+      "max_word_count": 4000,
+      "sections_per_article": 8,
+      "include_tldr": true,
+      "include_key_takeaways": true,
+      "include_tables": true,
+      "include_faqs": true,
+      "include_sources": true,
+      "internal_linking": true
+    },
+    "author": {
+      "name": "OpenVenture Team",
+      "role": "AI Content Platform",
+      "company": "OpenVenture",
+      "image_url": ""
+    }
+  },
+
+  "images": {
+    "generate_hero": true,
+    "generate_feature_icons": true,
+    "generate_blog_headers": true,
+    "style": "minimal",
+    "format": "webp",
+    "quality": 85
+  },
+
+  "deployment": {
+    "platform": "vercel",
+    "auto_deploy": true,
+    "preview_deployments": true,
+    "custom_domain": ""
+  },
+
+  "output": {
+    "directory": "./content",
+    "formats": {
+      "landing_page": "tsx",
+      "blog_articles": "json",
+      "images": "webp"
+    }
+  },
+
+  "advanced": {
+    "gemini_model": "gemini-2.0-flash-exp",
+    "temperature": 0.7,
+    "max_retries": 3,
+    "rate_limit_delay_ms": 1000,
+    "enable_competitor_analysis": true,
+    "enable_seo_optimization": true
+  }
+}

@@ -1,0 +1,457 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openventure.dev/venture.schema.json",
+  "title": "OpenVenture Configuration",
+  "description": "Configuration schema for OpenVenture website and blog generation",
+  "type": "object",
+  "required": ["idea", "name", "tagline", "business"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema reference"
+    },
+    "idea": {
+      "type": "string",
+      "minLength": 50,
+      "maxLength": 2000,
+      "description": "Detailed description of your business idea (50-2000 characters)"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 50,
+      "pattern": "^[a-zA-Z0-9\\s\\-\\.]+$",
+      "description": "Company/product name"
+    },
+    "tagline": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 150,
+      "description": "One-line value proposition (10-150 characters)"
+    },
+    "domain": {
+      "type": "string",
+      "format": "hostname",
+      "description": "Target domain (e.g., mycompany.com)"
+    },
+    "business": {
+      "type": "object",
+      "required": ["industry", "target_audience"],
+      "properties": {
+        "industry": {
+          "type": "string",
+          "enum": [
+            "saas",
+            "ecommerce",
+            "fintech",
+            "healthtech",
+            "edtech",
+            "marketplace",
+            "agency",
+            "consulting",
+            "media",
+            "other"
+          ],
+          "description": "Primary industry category"
+        },
+        "category": {
+          "type": "string",
+          "description": "More specific category within industry"
+        },
+        "target_audience": {
+          "type": "string",
+          "minLength": 20,
+          "description": "Detailed description of target audience"
+        },
+        "pain_points": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "maxItems": 10,
+          "description": "Key pain points your product solves"
+        },
+        "value_proposition": {
+          "type": "string",
+          "description": "Core value proposition statement"
+        },
+        "unique_selling_points": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "maxItems": 6,
+          "description": "What makes you different from competitors"
+        }
+      }
+    },
+    "competitors": {
+      "type": "object",
+      "properties": {
+        "urls": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          },
+          "maxItems": 5,
+          "description": "Competitor website URLs to analyze"
+        },
+        "analyze_design": {
+          "type": "boolean",
+          "default": true
+        },
+        "analyze_copy": {
+          "type": "boolean",
+          "default": true
+        },
+        "analyze_pricing": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "brand": {
+      "type": "object",
+      "properties": {
+        "tone": {
+          "type": "string",
+          "enum": ["professional", "friendly", "playful", "technical", "luxurious", "minimal"],
+          "default": "professional",
+          "description": "Overall brand voice and tone"
+        },
+        "personality": {
+          "type": "array",
+          "items": { "type": "string" },
+          "maxItems": 5,
+          "description": "Brand personality traits (e.g., innovative, trustworthy)"
+        },
+        "colors": {
+          "type": "object",
+          "properties": {
+            "primary": {
+              "type": "string",
+              "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+              "description": "Primary brand color (hex)"
+            },
+            "secondary": {
+              "type": "string",
+              "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+              "description": "Secondary brand color (hex)"
+            },
+            "accent": {
+              "type": "string",
+              "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+              "description": "Accent color (hex)"
+            },
+            "background": {
+              "type": "string",
+              "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+              "default": "#FFFFFF"
+            },
+            "text": {
+              "type": "string",
+              "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+              "default": "#171717"
+            }
+          }
+        },
+        "fonts": {
+          "type": "object",
+          "properties": {
+            "heading": {
+              "type": "string",
+              "default": "Inter"
+            },
+            "body": {
+              "type": "string",
+              "default": "Inter"
+            }
+          }
+        }
+      }
+    },
+    "landing_page": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "sections": {
+          "type": "object",
+          "properties": {
+            "hero": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": true },
+                "style": {
+                  "type": "string",
+                  "enum": ["centered", "split", "full-width"],
+                  "default": "centered"
+                },
+                "include_video": { "type": "boolean", "default": false }
+              }
+            },
+            "social_proof": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": true },
+                "logo_count": { "type": "integer", "minimum": 3, "maximum": 12, "default": 6 }
+              }
+            },
+            "features": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": true },
+                "count": { "type": "integer", "minimum": 3, "maximum": 12, "default": 6 },
+                "layout": {
+                  "type": "string",
+                  "enum": ["grid", "list", "cards"],
+                  "default": "grid"
+                }
+              }
+            },
+            "feature_showcase": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": true },
+                "count": { "type": "integer", "minimum": 1, "maximum": 5, "default": 3 },
+                "layout": {
+                  "type": "string",
+                  "enum": ["alternating", "stacked"],
+                  "default": "alternating"
+                }
+              }
+            },
+            "pricing": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": true },
+                "tiers": { "type": "integer", "minimum": 1, "maximum": 4, "default": 3 },
+                "currency": {
+                  "type": "string",
+                  "enum": ["EUR", "USD", "GBP", "CHF"],
+                  "default": "EUR"
+                },
+                "billing_period": {
+                  "type": "string",
+                  "enum": ["monthly", "yearly", "both"],
+                  "default": "monthly"
+                }
+              }
+            },
+            "testimonials": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": true },
+                "count": { "type": "integer", "minimum": 1, "maximum": 6, "default": 3 }
+              }
+            },
+            "faq": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": true },
+                "count": { "type": "integer", "minimum": 4, "maximum": 15, "default": 8 }
+              }
+            },
+            "cta": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": true },
+                "style": {
+                  "type": "string",
+                  "enum": ["gradient", "solid", "minimal"],
+                  "default": "gradient"
+                }
+              }
+            },
+            "footer": {
+              "type": "object",
+              "properties": {
+                "enabled": { "type": "boolean", "default": true },
+                "columns": { "type": "integer", "minimum": 2, "maximum": 5, "default": 4 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "blog": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "article_count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50,
+          "default": 10,
+          "description": "Number of blog articles to generate"
+        },
+        "locale": {
+          "type": "string",
+          "pattern": "^[a-z]{2}-[A-Z]{2}$",
+          "default": "de-DE",
+          "description": "Content locale (e.g., de-DE, en-US)"
+        },
+        "seo": {
+          "type": "object",
+          "properties": {
+            "primary_keyword": {
+              "type": "string",
+              "description": "Main keyword to target"
+            },
+            "secondary_keywords": {
+              "type": "array",
+              "items": { "type": "string" },
+              "maxItems": 20
+            },
+            "keyword_density": {
+              "type": "number",
+              "minimum": 0.5,
+              "maximum": 3,
+              "default": 1.5
+            }
+          }
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "min_word_count": {
+              "type": "integer",
+              "minimum": 500,
+              "maximum": 10000,
+              "default": 2000
+            },
+            "max_word_count": {
+              "type": "integer",
+              "minimum": 1000,
+              "maximum": 15000,
+              "default": 4000
+            },
+            "sections_per_article": {
+              "type": "integer",
+              "minimum": 3,
+              "maximum": 12,
+              "default": 8
+            },
+            "include_tldr": { "type": "boolean", "default": true },
+            "include_key_takeaways": { "type": "boolean", "default": true },
+            "include_tables": { "type": "boolean", "default": true },
+            "include_faqs": { "type": "boolean", "default": true },
+            "include_sources": { "type": "boolean", "default": true },
+            "internal_linking": { "type": "boolean", "default": true }
+          }
+        },
+        "author": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "role": { "type": "string" },
+            "company": { "type": "string" },
+            "image_url": { "type": "string", "format": "uri" }
+          }
+        }
+      }
+    },
+    "images": {
+      "type": "object",
+      "properties": {
+        "generate_hero": { "type": "boolean", "default": true },
+        "generate_feature_icons": { "type": "boolean", "default": true },
+        "generate_blog_headers": { "type": "boolean", "default": true },
+        "style": {
+          "type": "string",
+          "enum": ["minimal", "illustration", "photo", "abstract"],
+          "default": "minimal"
+        },
+        "format": {
+          "type": "string",
+          "enum": ["webp", "png", "jpg"],
+          "default": "webp"
+        },
+        "quality": {
+          "type": "integer",
+          "minimum": 50,
+          "maximum": 100,
+          "default": 85
+        }
+      }
+    },
+    "deployment": {
+      "type": "object",
+      "properties": {
+        "platform": {
+          "type": "string",
+          "enum": ["vercel", "netlify", "cloudflare"],
+          "default": "vercel"
+        },
+        "auto_deploy": { "type": "boolean", "default": true },
+        "preview_deployments": { "type": "boolean", "default": true },
+        "custom_domain": {
+          "type": "string",
+          "format": "hostname"
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "directory": {
+          "type": "string",
+          "default": "./output"
+        },
+        "formats": {
+          "type": "object",
+          "properties": {
+            "landing_page": {
+              "type": "string",
+              "enum": ["tsx", "html", "json"],
+              "default": "tsx"
+            },
+            "blog_articles": {
+              "type": "string",
+              "enum": ["json", "md", "mdx"],
+              "default": "json"
+            },
+            "images": {
+              "type": "string",
+              "enum": ["webp", "png", "jpg"],
+              "default": "webp"
+            }
+          }
+        }
+      }
+    },
+    "advanced": {
+      "type": "object",
+      "properties": {
+        "gemini_model": {
+          "type": "string",
+          "default": "gemini-2.0-flash-exp"
+        },
+        "temperature": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2,
+          "default": 0.7
+        },
+        "max_retries": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "default": 3
+        },
+        "rate_limit_delay_ms": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 10000,
+          "default": 1000
+        },
+        "enable_competitor_analysis": { "type": "boolean", "default": true },
+        "enable_seo_optimization": { "type": "boolean", "default": true }
+      }
+    }
+  }
+}

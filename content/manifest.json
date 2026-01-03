@@ -1,0 +1,15 @@
+{
+  "venture_id": "-c44HWhs0RrRWcxF1UDgP",
+  "venture_name": "OpenVenture",
+  "generated_at": "2026-01-03T23:22:40.272Z",
+  "config_hash": "eyIkc2NoZW1hIjoiLi92ZW50dXJlLnNj",
+  "outputs": {
+    "landing_page": "landing/content.json",
+    "blog": "blog/manifest.json"
+  },
+  "stats": {
+    "landing_sections": 13,
+    "blog_articles": 7,
+    "total_words": 21597
+  }
+}

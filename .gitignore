@@ -39,3 +39,24 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# OpenVenture
+/output/
+.env.local
+.env.production
+
+# Claude
+.claude/
+
+# Python virtual env
+.venv/
+
+# Screenshots
+screenshot*.png
+
+# Playwright
+playwright-report/
+test-results/
+
+# Test configs
+test-venture.config.json

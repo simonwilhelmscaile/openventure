@@ -1,0 +1,60 @@
+name: Generate Venture
+
+on:
+  workflow_dispatch:
+    inputs:
+      config_path:
+        description: 'Path to venture.config.json'
+        required: true
+        default: './venture.config.json'
+        type: string
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate config
+        run: |
+          if [ ! -f "${{ inputs.config_path }}" ]; then
+            echo "Error: Config file not found at ${{ inputs.config_path }}"
+            exit 1
+          fi
+          echo "Config file found: ${{ inputs.config_path }}"
+
+      - name: Generate content
+        run: npm run generate -- --config=${{ inputs.config_path }}
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: venture-output
+          path: output/
+          retention-days: 7
+
+      - name: Summary
+        run: |
+          echo "## Generation Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Config: \`${{ inputs.config_path }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -d "output" ]; then
+            echo "### Generated Files" >> $GITHUB_STEP_SUMMARY
+            find output -type f -name "*.json" | head -20 >> $GITHUB_STEP_SUMMARY
+          fi

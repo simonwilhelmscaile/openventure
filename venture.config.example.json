@@ -1,0 +1,93 @@
+{
+  "$schema": "./venture.schema.json",
+
+  "idea": "Describe your business idea in one paragraph. Be specific about what problem you solve and how. This should be 50-200 words.",
+  "name": "Your Company Name",
+  "tagline": "Your catchy one-liner that explains your value",
+  "domain": "yourcompany.com",
+
+  "business": {
+    "industry": "saas",
+    "category": "Your specific category",
+    "target_audience": "Describe your ideal customer - who they are, what they do, their demographics",
+    "pain_points": [
+      "First problem your customers face",
+      "Second problem you solve",
+      "Third pain point you address"
+    ],
+    "value_proposition": "How your product uniquely solves these problems",
+    "unique_selling_points": [
+      "What makes you different #1",
+      "What makes you different #2",
+      "What makes you different #3"
+    ]
+  },
+
+  "brand": {
+    "tone": "professional",
+    "personality": ["innovative", "trustworthy", "helpful"],
+    "colors": {
+      "primary": "#000000",
+      "secondary": "#1B1B1B",
+      "accent": "#6366F1",
+      "background": "#FFFFFF",
+      "text": "#000000"
+    },
+    "fonts": {
+      "heading": "Inter",
+      "body": "Inter"
+    }
+  },
+
+  "landing_page": {
+    "enabled": true,
+    "sections": {
+      "hero": { "enabled": true, "style": "centered" },
+      "social_proof": { "enabled": true, "logo_count": 6 },
+      "features": { "enabled": true, "count": 6, "layout": "grid" },
+      "feature_showcase": { "enabled": true, "count": 3 },
+      "pricing": { "enabled": true, "tiers": 3, "currency": "USD" },
+      "testimonials": { "enabled": true, "count": 3 },
+      "faq": { "enabled": true, "count": 8 },
+      "cta": { "enabled": true },
+      "footer": { "enabled": true, "columns": 4 }
+    }
+  },
+
+  "blog": {
+    "enabled": true,
+    "article_count": 10,
+    "locale": "en-US",
+    "seo": {
+      "primary_keyword": "your main keyword",
+      "secondary_keywords": [
+        "secondary keyword 1",
+        "secondary keyword 2",
+        "secondary keyword 3"
+      ]
+    },
+    "content": {
+      "min_word_count": 2000,
+      "max_word_count": 4000,
+      "include_tldr": true,
+      "include_key_takeaways": true,
+      "include_tables": true,
+      "include_faqs": true
+    },
+    "author": {
+      "name": "Your Name",
+      "role": "Your Title",
+      "company": "Your Company"
+    }
+  },
+
+  "output": {
+    "directory": "./content"
+  },
+
+  "advanced": {
+    "gemini_model": "gemini-2.0-flash-exp",
+    "temperature": 0.7,
+    "max_retries": 3
+  }
+}

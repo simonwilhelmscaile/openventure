@@ -1,36 +1,209 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OpenVenture
 
-## Getting Started
+> Generate a production-ready website + SEO blog from just a business idea.
+> No coding required. Deploy in minutes.
 
-First, run the development server:
+## What You Get
+
+- **Professional Landing Page** - Superhuman-style design with hero, features, pricing, FAQ
+- **10 SEO-Optimized Blog Articles** - 2000+ words each, ready to drive organic traffic
+- **Production-Ready Code** - Built on Next.js, deployable to Vercel
+- **One-Click Deployment** - From idea to live website in under an hour
+
+## Quick Start (5 Minutes)
+
+### Step 1: Get Your Gemini API Key
+
+1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Click "Create API Key"
+3. Copy the key somewhere safe
+
+### Step 2: Clone & Setup
+
+```bash
+git clone https://github.com/simonwilhelmscaile/openventure.git
+cd openventure
+npm install
+```
+
+### Step 3: Configure Your Venture
+
+Copy the example config and edit it with your business details:
+
+```bash
+cp venture.config.example.json venture.config.json
+```
+
+Open `venture.config.json` and fill in your details:
+
+```json
+{
+  "name": "Your Company Name",
+  "idea": "One paragraph describing your business",
+  "tagline": "Your catchy tagline",
+  "business": {
+    "industry": "saas",
+    "target_audience": "Who are your customers?",
+    "pain_points": ["Problem 1", "Problem 2", "Problem 3"],
+    "value_proposition": "How you solve their problems"
+  },
+  "brand": {
+    "colors": {
+      "primary": "#000000",
+      "accent": "#6366F1"
+    }
+  }
+}
+```
+
+### Step 4: Generate Your Venture
+
+```bash
+export GEMINI_API_KEY=your-api-key-here
+npm run generate
+```
+
+This creates your landing page content and blog articles (takes 5-10 minutes).
+
+### Step 5: Preview Locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see your site!
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Step 6: Deploy to Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npx vercel
+```
 
-## Learn More
+Follow the prompts. Your site will be live in minutes!
 
-To learn more about Next.js, take a look at the following resources:
+## Configuration Guide
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Required Fields
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Field | Description | Example |
+|-------|-------------|---------|
+| `name` | Your company/product name | "PetPal AI" |
+| `idea` | One paragraph describing your business (50+ chars) | "AI assistant that helps pet owners..." |
+| `tagline` | Catchy one-liner (10-150 chars) | "Your Pet's Health, Powered by AI" |
 
-## Deploy on Vercel
+### Business Section
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Field | Description |
+|-------|-------------|
+| `industry` | One of: `saas`, `ecommerce`, `fintech`, `healthtech`, `edtech`, `marketplace`, `agency`, `consulting`, `media`, `other` |
+| `target_audience` | Who you're selling to |
+| `pain_points` | 3-5 problems you solve |
+| `value_proposition` | Your core value statement |
+| `unique_selling_points` | What makes you different |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Brand Colors
+
+Customize your site's look:
+
+```json
+"brand": {
+  "colors": {
+    "primary": "#000000",
+    "secondary": "#1B1B1B",
+    "accent": "#6366F1",
+    "background": "#FFFFFF",
+    "text": "#000000"
+  }
+}
+```
+
+### Blog Settings
+
+```json
+"blog": {
+  "article_count": 10,
+  "locale": "en-US",
+  "seo": {
+    "primary_keyword": "your main keyword",
+    "secondary_keywords": ["keyword 2", "keyword 3"]
+  },
+  "author": {
+    "name": "Your Name",
+    "role": "Your Title",
+    "company": "Your Company"
+  }
+}
+```
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `npm run generate` | Generate landing page and blog content |
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server |
+| `npx vercel` | Deploy to Vercel |
+
+## Troubleshooting
+
+### "GEMINI_API_KEY not found"
+
+Make sure you've set the environment variable:
+
+```bash
+export GEMINI_API_KEY=your-key-here
+```
+
+Or create a `.env.local` file:
+
+```
+GEMINI_API_KEY=your-key-here
+```
+
+### Generation fails with JSON errors
+
+Some articles may fail due to Gemini output formatting. The generator will continue and create as many articles as possible. You can re-run `npm run generate` to try again.
+
+### Build errors
+
+Run these commands to check for issues:
+
+```bash
+npm run typecheck  # Check TypeScript
+npm run lint       # Check code style
+npm run build      # Test production build
+```
+
+## FAQ
+
+**Q: How much does it cost?**
+A: OpenVenture is free. You only pay for Gemini API usage (very low cost for generation).
+
+**Q: Can I customize the design?**
+A: Yes! The generated code is standard Next.js + Tailwind CSS. You can modify any component.
+
+**Q: How long does generation take?**
+A: Landing page: ~30 seconds. Blog articles: ~5-10 minutes for 10 articles.
+
+**Q: Can I regenerate content?**
+A: Yes! Just run `npm run generate` again. Previous content will be overwritten.
+
+**Q: What if I want different content?**
+A: Edit your `venture.config.json` to adjust your business description, keywords, etc., then regenerate.
+
+## Tech Stack
+
+- **Framework**: Next.js 16
+- **Styling**: Tailwind CSS
+- **AI**: Google Gemini
+- **Deployment**: Vercel
+- **Language**: TypeScript
+
+## License
+
+MIT
+
+---
+
+Built with OpenVenture - Launch your business in minutes, not months.

@@ -76,10 +76,19 @@ Open [http://localhost:3000](http://localhost:3000) to see your site!
 ### Step 6: Deploy to Vercel
 
 ```bash
+# First time: Login to Vercel
+npx vercel login
+
+# Deploy preview
 npx vercel
+
+# Deploy to production
+npx vercel --prod
 ```
 
-Follow the prompts. Your site will be live in minutes!
+Your site will be live at `https://your-project.vercel.app`!
+
+**Live Demo:** https://openventure.vercel.app
 
 ## Configuration Guide
 

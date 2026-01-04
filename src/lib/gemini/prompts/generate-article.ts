@@ -103,9 +103,10 @@ CONTENT GUIDELINES:
 
 INTERNAL LINKING:
 - Include 3-5 internal link opportunities in the content
-- Link to: other articles, /pricing, /#features
+- Valid internal links: /blog, /#features, /#pricing, /#faq, /about, /contact
+- DO NOT link to /pricing, /features, /faq (these pages don't exist, use /#pricing etc.)
 - Use descriptive anchor text (never "click here")
-- Format: [anchor text](/path)
+- Format: [anchor text](/path) or [anchor text](/#section)
 
 EXTERNAL CITATIONS:
 - Include 5-10 authoritative external source references

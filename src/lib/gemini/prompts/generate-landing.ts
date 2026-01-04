@@ -303,12 +303,17 @@ TASK:
 Generate footer content with ${columnCount} navigation columns.
 
 REQUIREMENTS:
-- Column 1: Product links (features, pricing, etc.)
-- Column 2: Company links (about, careers, etc.)
-- Column 3: Resources (blog, help, docs, etc.)
-- Column 4: Legal (terms, privacy, etc.)
-- Include social media links
+- Column 1: Product links - MUST use anchor links for sections on the landing page: "/#features", "/#pricing", "/#faq"
+- Column 2: Company links - Use page paths: "/about", "/careers", "/contact"
+- Column 3: Resources - Use "/blog" for blog, external URLs for GitHub/docs
+- Column 4: Legal - Use page paths: "/terms", "/privacy"
+- Include social media links with full URLs
 - Include copyright text
+
+CRITICAL:
+- For sections on the homepage (Features, Pricing, FAQ), use "/#features", "/#pricing", "/#faq" NOT "/features", "/pricing", "/faq"
+- Only these pages exist: /about, /careers, /contact, /blog, /terms, /privacy
+- For external resources, use full https:// URLs
 
 OUTPUT FORMAT:
 Return ONLY valid JSON:
@@ -317,16 +322,38 @@ Return ONLY valid JSON:
     {
       "title": "Product",
       "links": [
-        {"text": "Features", "href": "#features"},
-        {"text": "Pricing", "href": "#pricing"}
+        {"text": "Features", "href": "/#features"},
+        {"text": "Pricing", "href": "/#pricing"},
+        {"text": "FAQ", "href": "/#faq"}
+      ]
+    },
+    {
+      "title": "Company",
+      "links": [
+        {"text": "About", "href": "/about"},
+        {"text": "Careers", "href": "/careers"},
+        {"text": "Contact", "href": "/contact"}
+      ]
+    },
+    {
+      "title": "Resources",
+      "links": [
+        {"text": "Blog", "href": "/blog"}
+      ]
+    },
+    {
+      "title": "Legal",
+      "links": [
+        {"text": "Terms", "href": "/terms"},
+        {"text": "Privacy", "href": "/privacy"}
       ]
     }
   ],
   "social_links": [
-    {"platform": "twitter", "href": "https://twitter.com"},
-    {"platform": "linkedin", "href": "https://linkedin.com"}
+    {"platform": "twitter", "href": "https://twitter.com/${config.name.toLowerCase().replace(/\s+/g, '')}"},
+    {"platform": "linkedin", "href": "https://linkedin.com/company/${config.name.toLowerCase().replace(/\s+/g, '')}"}
   ],
-  "copyright": "© 2024 ${config.name}. All rights reserved.",
+  "copyright": "© ${new Date().getFullYear()} ${config.name}. All rights reserved.",
   "bottom_links": [
     {"text": "Terms", "href": "/terms"},
     {"text": "Privacy", "href": "/privacy"}

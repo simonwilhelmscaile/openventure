@@ -436,15 +436,15 @@
         "links": [
           {
             "text": "Features",
-            "href": "/features"
+            "href": "/#features"
           },
           {
             "text": "Pricing",
-            "href": "/pricing"
+            "href": "/#pricing"
           },
           {
-            "text": "Integrations",
-            "href": "/integrations"
+            "text": "FAQ",
+            "href": "/#faq"
           }
         ]
       },
@@ -473,12 +473,12 @@
             "href": "/blog"
           },
           {
-            "text": "Help Center",
-            "href": "/help"
+            "text": "GitHub",
+            "href": "https://github.com/simonwilhelmscaile/openventure"
           },
           {
             "text": "Documentation",
-            "href": "/docs"
+            "href": "https://github.com/simonwilhelmscaile/openventure#readme"
           }
         ]
       },
@@ -492,10 +492,6 @@
           {
             "text": "Privacy Policy",
             "href": "/privacy"
-          },
-          {
-            "text": "Cookie Policy",
-            "href": "/cookies"
           }
         ]
       }

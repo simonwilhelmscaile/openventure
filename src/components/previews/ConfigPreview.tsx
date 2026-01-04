@@ -5,41 +5,56 @@ interface ConfigPreviewProps {
   tagline?: string;
 }
 
-export function ConfigPreview({ ventureName = 'OpenVenture', tagline = 'Launch in minutes' }: ConfigPreviewProps) {
+export function ConfigPreview({ ventureName = 'YourVenture', tagline = 'Your tagline here' }: ConfigPreviewProps) {
+  // Use shorter tagline for display
+  const displayTagline = tagline.length > 25 ? tagline.slice(0, 22) + '...' : tagline;
+
   const configJSON = `{
   "name": "${ventureName}",
-  "tagline": "${tagline}",
+  "tagline": "${displayTagline}",
   "business": {
-    "industry": "SaaS",
-    "target_audience": "Entrepreneurs"
+    "industry": "Technology",
+    "target_audience": "Your audience"
+  },
+  "brand": {
+    "colors": { "primary": "#000" }
   },
   "landing_page": { "enabled": true },
   "blog": { "article_count": 10 }
 }`;
 
   return (
-    <div className="h-full w-full bg-[#1E1E1E] p-4 font-mono text-sm">
+    <div className="h-full w-full bg-[#1a1a1a] p-4 font-mono text-sm">
       {/* VS Code Style Header */}
-      <div className="mb-3 flex items-center gap-2 border-b border-[#333] pb-2">
-        <div className="flex gap-1.5">
-          <div className="h-3 w-3 rounded-full bg-[#FF5F56]" />
-          <div className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
-          <div className="h-3 w-3 rounded-full bg-[#27C93F]" />
+      <div className="mb-3 flex items-center justify-between border-b border-[#333] pb-2">
+        <div className="flex items-center gap-2">
+          <div className="flex gap-1.5">
+            <div className="h-3 w-3 rounded-full bg-[#FF5F56]" />
+            <div className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
+            <div className="h-3 w-3 rounded-full bg-[#27C93F]" />
+          </div>
+          <span className="ml-2 text-xs text-gray-400">venture.config.json</span>
         </div>
-        <span className="ml-2 text-xs text-gray-400">venture.config.json</span>
+        <span className="rounded bg-green-900/30 px-2 py-0.5 text-[9px] text-green-400">valid</span>
       </div>
 
       {/* Code Content */}
-      <pre className="text-[11px] leading-relaxed text-gray-300 md:text-xs">
+      <pre className="text-[10px] leading-relaxed text-gray-300 md:text-[11px]">
         {configJSON.split('\n').map((line, i) => (
-          <div key={i} className="flex">
-            <span className="mr-4 w-4 select-none text-right text-gray-600">{i + 1}</span>
+          <div key={i} className="flex hover:bg-white/5">
+            <span className="mr-3 w-4 select-none text-right text-gray-600">{i + 1}</span>
             <span className="whitespace-pre">
               {formatJSONLine(line)}
             </span>
           </div>
         ))}
       </pre>
+
+      {/* Status bar */}
+      <div className="mt-3 flex items-center justify-between border-t border-[#333] pt-2 text-[9px] text-gray-500">
+        <span>JSON</span>
+        <span>UTF-8</span>
+      </div>
     </div>
   );
 }

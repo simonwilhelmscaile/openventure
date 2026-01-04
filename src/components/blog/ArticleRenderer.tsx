@@ -3,7 +3,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Article } from '@/lib/content/types';
 import { getArticleSections, getKeyTakeaways } from '@/lib/content/articles';
-import { loadVentureConfig } from '@/lib/content/loader';
+import { loadVentureConfig, getVentureMetadata } from '@/lib/content/loader';
+import { TableOfContents } from './TableOfContents';
+import { ShareButtons } from './ShareButtons';
+import { FAQAccordion } from './FAQAccordion';
 
 interface ArticleRendererProps {
   article: Article;
@@ -96,6 +99,7 @@ export function ArticleRenderer({ article, blogConfig }: ArticleRendererProps) {
   const sections = getArticleSections(article);
   const keyTakeaways = getKeyTakeaways(article);
   const ventureConfig = loadVentureConfig();
+  const venture = getVentureMetadata();
 
   const formattedDate = new Date(article.publication_date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -106,22 +110,37 @@ export function ArticleRenderer({ article, blogConfig }: ArticleRendererProps) {
   const authorName = blogConfig?.author?.name || ventureConfig?.blog?.author?.name || 'Content Team';
   const authorTitle = blogConfig?.author?.title || ventureConfig?.blog?.author?.role || 'Content Team';
 
+  // Generate TOC items from sections
+  const tocItems = sections.map((section) => ({
+    id: section.id,
+    title: section.title,
+    level: 1,
+  }));
+
+  // Build article URL for sharing
+  const articleUrl = typeof window !== 'undefined'
+    ? window.location.href
+    : `https://${venture.domain}/blog/${article.slug}`;
+
   return (
     <article className="mx-auto max-w-3xl px-6 py-16">
       {/* Header */}
       <header className="mb-12">
-        <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-[var(--text-tertiary)]">
-          {article.category && (
-            <>
-              <span className="rounded-full bg-[var(--bg-tertiary)] px-3 py-1 text-xs font-medium uppercase tracking-wide">
-                {article.category}
-              </span>
-              <span>·</span>
-            </>
-          )}
-          <time dateTime={article.publication_date}>{formattedDate}</time>
-          <span>·</span>
-          <span>{article.read_time} min read</span>
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--text-tertiary)]">
+            {article.category && (
+              <>
+                <span className="rounded-full bg-[var(--bg-tertiary)] px-3 py-1 text-xs font-medium uppercase tracking-wide">
+                  {article.category}
+                </span>
+                <span>·</span>
+              </>
+            )}
+            <time dateTime={article.publication_date}>{formattedDate}</time>
+            <span>·</span>
+            <span>{article.read_time} min read</span>
+          </div>
+          <ShareButtons url={articleUrl} title={article.Headline} />
         </div>
 
         <h1 className="text-3xl font-bold leading-tight text-[var(--text-primary)] md:text-4xl lg:text-5xl">
@@ -143,8 +162,8 @@ export function ArticleRenderer({ article, blogConfig }: ArticleRendererProps) {
         </div>
       </header>
 
-      {/* Hero Image */}
-      {article.hero_image && (
+      {/* Hero Image/Visual */}
+      {article.hero_image ? (
         <div className="relative mb-12 aspect-video overflow-hidden rounded-xl">
           <Image
             src={article.hero_image}
@@ -153,6 +172,28 @@ export function ArticleRenderer({ article, blogConfig }: ArticleRendererProps) {
             className="object-cover"
             priority
           />
+        </div>
+      ) : (
+        <div className="relative mb-12 aspect-video overflow-hidden rounded-xl bg-[#0a0a0a]">
+          {/* Grid pattern background */}
+          <div
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: `linear-gradient(to right, #333 1px, transparent 1px), linear-gradient(to bottom, #333 1px, transparent 1px)`,
+              backgroundSize: '40px 40px',
+            }}
+          />
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)]/20 via-transparent to-[var(--color-accent)]/20" />
+          {/* Content */}
+          <div className="relative flex h-full flex-col items-center justify-center p-8 text-center">
+            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm">
+              <span className="text-2xl font-bold text-white">{venture.name.charAt(0)}</span>
+            </div>
+            <h2 className="max-w-xl text-lg font-semibold text-white/90 line-clamp-3">
+              {article.Headline}
+            </h2>
+          </div>
         </div>
       )}
 
@@ -163,6 +204,32 @@ export function ArticleRenderer({ article, blogConfig }: ArticleRendererProps) {
             TL;DR
           </h2>
           <p className="text-[var(--text-secondary)]">{article.TLDR}</p>
+        </div>
+      )}
+
+      {/* Table of Contents */}
+      {tocItems.length > 3 && (
+        <div className="mb-12 rounded-xl border border-[var(--border-default)] p-6">
+          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-[var(--text-tertiary)]">
+            Table of Contents
+          </h2>
+          <nav aria-label="Table of contents">
+            <ol className="space-y-2">
+              {tocItems.map((item, index) => (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    className="flex items-center gap-3 text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--color-primary)]"
+                  >
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--bg-tertiary)] text-xs font-medium">
+                      {index + 1}
+                    </span>
+                    {item.title}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
         </div>
       )}
 
@@ -280,31 +347,9 @@ export function ArticleRenderer({ article, blogConfig }: ArticleRendererProps) {
           <h2 className="mb-8 text-2xl font-bold text-[var(--text-primary)]">
             Frequently Asked Questions
           </h2>
-          <div className="space-y-6">
-            {article.faq_items.map((faq, index) => (
-              <div key={index} className="rounded-xl border border-[var(--border-default)] p-6">
-                <h3 className="text-lg font-semibold text-[var(--text-primary)]">
-                  {faq.question}
-                </h3>
-                <p className="mt-2 text-[var(--text-secondary)]">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
+          <FAQAccordion items={article.faq_items} />
         </div>
       )}
-
-      {/* Back to blog */}
-      <div className="mt-16 border-t border-[var(--border-default)] pt-8">
-        <Link
-          href="/blog"
-          className="inline-flex items-center gap-2 text-sm font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
-        >
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          Back to all articles
-        </Link>
-      </div>
     </article>
   );
 }

@@ -44,6 +44,7 @@ interface Args {
   file?: string;
   output?: string;
   interactive?: boolean;
+  apiKey?: string;
 }
 
 function parseArgs(): Args {
@@ -56,6 +57,8 @@ function parseArgs(): Args {
       args.file = arg.replace('--file=', '');
     } else if (arg.startsWith('--output=')) {
       args.output = arg.replace('--output=', '');
+    } else if (arg.startsWith('--api-key=')) {
+      args.apiKey = arg.replace('--api-key=', '');
     } else if (arg === '--interactive' || arg === '-i') {
       args.interactive = true;
     }
@@ -103,13 +106,47 @@ async function getInteractiveInput(): Promise<string> {
   });
 }
 
-async function generateVentureConfig(description: string): Promise<object> {
-  const apiKey = process.env.GEMINI_API_KEY;
+async function promptForApiKey(): Promise<string> {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  return new Promise((resolve) => {
+    console.log('');
+    console.log('🔑 Gemini API Key Required');
+    console.log('');
+    console.log('   Get your free API key at: https://makersuite.google.com/app/apikey');
+    console.log('');
+    rl.question('   Enter your Gemini API key: ', async (key) => {
+      const trimmedKey = key.trim();
+
+      // Ask if they want to save it
+      rl.question('   Save to .env file for future use? (Y/n): ', (answer) => {
+        rl.close();
+
+        if (answer.toLowerCase() !== 'n') {
+          const envPath = path.join(process.cwd(), '.env');
+          fs.writeFileSync(envPath, `GEMINI_API_KEY=${trimmedKey}\n`);
+          console.log('');
+          console.log('   ✓ Saved to .env file');
+        }
+
+        resolve(trimmedKey);
+      });
+    });
+  });
+}
+
+async function generateVentureConfig(description: string, providedApiKey?: string): Promise<object> {
+  let apiKey = providedApiKey || process.env.GEMINI_API_KEY;
 
   if (!apiKey) {
-    throw new Error(
-      'GEMINI_API_KEY not found. Please set it in your .env file or environment.'
-    );
+    apiKey = await promptForApiKey();
+  }
+
+  if (!apiKey) {
+    throw new Error('API key is required');
   }
 
   const genAI = new GoogleGenerativeAI(apiKey);
@@ -230,7 +267,11 @@ async function main(): Promise<void> {
     console.log('  --prompt="..."   Provide description directly');
     console.log('  --file=path      Read description from file');
     console.log('  --output=path    Output config to specific file (default: venture.config.json)');
+    console.log('  --api-key=KEY    Gemini API key (or will prompt if not set)');
     console.log('  --interactive    Interactive mode with prompts');
+    console.log('');
+    console.log('If no API key is provided, you will be prompted to enter one.');
+    console.log('Get your free key at: https://makersuite.google.com/app/apikey');
     console.log('');
     process.exit(0);
   }
@@ -242,7 +283,7 @@ async function main(): Promise<void> {
 
   try {
     // Generate config using Gemini
-    const config = await generateVentureConfig(description);
+    const config = await generateVentureConfig(description, args.apiKey);
 
     // Display the generated config
     displayConfig(config as Record<string, unknown>);

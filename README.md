@@ -29,16 +29,20 @@
 git clone https://github.com/simonwilhelmscaile/openventure.git
 cd openventure
 npm install
-echo "GEMINI_API_KEY=your-key-here" > .env
 ```
 
 ### Step 3: Describe Your Business
 
-Just run this command and describe your business in plain English:
+Just run this command - it will ask for your API key if needed:
 
 ```bash
 npm run create-venture
 ```
+
+The script will:
+1. Prompt for your Gemini API key (and save it for future use)
+2. Ask you to describe your business
+3. Generate your complete configuration
 
 **Example input:**
 ```

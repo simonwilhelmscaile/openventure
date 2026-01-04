@@ -1,0 +1,101 @@
+name: Test New User Experience
+
+# Run manually from GitHub Actions tab
+on:
+  workflow_dispatch:
+    inputs:
+      business_description:
+        description: 'Business description to test'
+        required: false
+        default: 'AI-powered fitness app that creates personalized workout plans using computer vision to analyze form and provide real-time feedback'
+      article_count:
+        description: 'Number of articles to generate (use 3-5 for faster tests)'
+        required: false
+        default: '5'
+
+jobs:
+  test-end-to-end:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create venture config from description
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          npm run create-venture -- \
+            --api-key="$GEMINI_API_KEY" \
+            --prompt="${{ github.event.inputs.business_description }}"
+
+          # Override article count for faster testing
+          sed -i 's/"article_count": 20/"article_count": ${{ github.event.inputs.article_count }}/' venture.config.json
+
+          echo "Generated config:"
+          cat venture.config.json | head -40
+
+      - name: Generate venture content
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: npm run generate -- --config=venture.config.json
+
+      - name: Validate links
+        run: npm run validate-links -- --fix --skip-external
+
+      - name: Build production site
+        run: npm run build
+
+      - name: Verify output
+        run: |
+          echo "=== Checking generated content ==="
+
+          # Check landing page
+          if [ -f "content/landing/content.json" ]; then
+            echo "✓ Landing page content exists"
+            VENTURE_NAME=$(cat content/landing/content.json | node -e "const d=require('fs').readFileSync('/dev/stdin','utf8');console.log(JSON.parse(d).hero?.title || 'Unknown')")
+            echo "  Venture: $VENTURE_NAME"
+          else
+            echo "✗ Landing page content missing"
+            exit 1
+          fi
+
+          # Check blog articles
+          if [ -f "content/blog/manifest.json" ]; then
+            ARTICLE_COUNT=$(node -e "console.log(require('./content/blog/manifest.json').articles.length)")
+            echo "✓ Blog manifest exists with $ARTICLE_COUNT articles"
+          else
+            echo "✗ Blog manifest missing"
+            exit 1
+          fi
+
+          # Check build output
+          if [ -d ".next" ]; then
+            echo "✓ Next.js build successful"
+          else
+            echo "✗ Build output missing"
+            exit 1
+          fi
+
+          echo ""
+          echo "=== TEST PASSED ==="
+
+      - name: Upload generated content
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: generated-venture
+          path: |
+            venture.config.json
+            content/
+          retention-days: 7

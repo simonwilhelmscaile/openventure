@@ -10,11 +10,22 @@ import { FAQ } from './FAQ';
 import { CTA } from './CTA';
 import { Footer } from './Footer';
 
-interface LandingPageProps {
-  content: LandingPageContent;
+interface ArticlePreviewData {
+  title: string;
+  category?: string;
+  date: string;
 }
 
-export function LandingPage({ content }: LandingPageProps) {
+interface LandingPageProps {
+  content: LandingPageContent;
+  articles?: ArticlePreviewData[];
+  domain?: string;
+}
+
+export function LandingPage({ content, articles, domain }: LandingPageProps) {
+  // Extract tagline from hero subtitle or use venture name
+  const tagline = content.hero.subheadline?.split('.')[0] || content.venture_name;
+
   return (
     <>
       <Navigation brandName={content.venture_name} />
@@ -25,7 +36,13 @@ export function LandingPage({ content }: LandingPageProps) {
           <Features content={content.features} />
         </section>
         <section id="showcase">
-          <FeatureShowcase content={content.feature_showcase} />
+          <FeatureShowcase
+            content={content.feature_showcase}
+            ventureName={content.venture_name}
+            tagline={tagline}
+            articles={articles}
+            domain={domain}
+          />
         </section>
         <section id="pricing">
           <Pricing content={content.pricing} />

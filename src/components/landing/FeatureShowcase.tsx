@@ -2,33 +2,58 @@ import Image from 'next/image';
 import type { FeatureShowcaseContent, FeatureShowcase as FeatureShowcaseType } from '@/types';
 import { ConfigPreview, ArticlesPreview, DeployPreview } from '@/components/previews';
 
-interface FeatureShowcaseProps {
-  content: FeatureShowcaseContent;
+interface ArticlePreviewData {
+  title: string;
+  category?: string;
+  date: string;
 }
 
-function getPreviewComponent(showcaseId: string): React.ReactNode {
+interface FeatureShowcaseProps {
+  content: FeatureShowcaseContent;
+  ventureName?: string;
+  tagline?: string;
+  articles?: ArticlePreviewData[];
+  domain?: string;
+}
+
+function getPreviewComponent(
+  showcaseId: string,
+  ventureName?: string,
+  tagline?: string,
+  articles?: ArticlePreviewData[],
+  domain?: string
+): React.ReactNode {
   // Match showcase IDs to preview components
   if (showcaseId.includes('showcase-1') || showcaseId.toLowerCase().includes('config')) {
-    return <ConfigPreview />;
+    return <ConfigPreview ventureName={ventureName} tagline={tagline} />;
   }
   if (showcaseId.includes('showcase-2') || showcaseId.toLowerCase().includes('article') || showcaseId.toLowerCase().includes('blog')) {
-    return <ArticlesPreview />;
+    return <ArticlesPreview articles={articles} />;
   }
   if (showcaseId.includes('showcase-3') || showcaseId.toLowerCase().includes('deploy')) {
-    return <DeployPreview />;
+    return <DeployPreview domain={domain} />;
   }
   // Default to config preview for first, articles for second, deploy for third
   return null;
 }
 
-function ShowcaseItem({ showcase, index }: { showcase: FeatureShowcaseType; index: number }) {
+interface ShowcaseItemProps {
+  showcase: FeatureShowcaseType;
+  index: number;
+  ventureName?: string;
+  tagline?: string;
+  articles?: ArticlePreviewData[];
+  domain?: string;
+}
+
+function ShowcaseItem({ showcase, index, ventureName, tagline, articles, domain }: ShowcaseItemProps) {
   const isImageLeft = showcase.image_position === 'left';
 
   // Get dynamic preview based on showcase id or fallback to index-based
-  const previewComponent = getPreviewComponent(showcase.id) || (
-    index === 0 ? <ConfigPreview /> :
-    index === 1 ? <ArticlesPreview /> :
-    <DeployPreview />
+  const previewComponent = getPreviewComponent(showcase.id, ventureName, tagline, articles, domain) || (
+    index === 0 ? <ConfigPreview ventureName={ventureName} tagline={tagline} /> :
+    index === 1 ? <ArticlesPreview articles={articles} /> :
+    <DeployPreview domain={domain} />
   );
 
   return (
@@ -92,13 +117,21 @@ function ShowcaseItem({ showcase, index }: { showcase: FeatureShowcaseType; inde
   );
 }
 
-export function FeatureShowcase({ content }: FeatureShowcaseProps) {
+export function FeatureShowcase({ content, ventureName, tagline, articles, domain }: FeatureShowcaseProps) {
   return (
     <section className="bg-[var(--bg-secondary)] py-24 md:py-32">
       <div className="mx-auto max-w-[1200px] px-6">
         <div className="space-y-24 md:space-y-32">
           {content.showcases.map((showcase, index) => (
-            <ShowcaseItem key={showcase.id} showcase={showcase} index={index} />
+            <ShowcaseItem
+              key={showcase.id}
+              showcase={showcase}
+              index={index}
+              ventureName={ventureName}
+              tagline={tagline}
+              articles={articles}
+              domain={domain}
+            />
           ))}
         </div>
       </div>

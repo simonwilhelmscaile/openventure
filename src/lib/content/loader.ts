@@ -187,3 +187,46 @@ export function getVentureMetadata(): { name: string; tagline: string; domain: s
     domain: 'openventure.vercel.app',
   };
 }
+
+/**
+ * Article preview for landing page showcase
+ */
+export interface ArticlePreview {
+  title: string;
+  category?: string;
+  date: string;
+}
+
+/**
+ * Load article previews for landing page showcase
+ */
+export function loadArticlePreviews(): ArticlePreview[] {
+  if (typeof window !== 'undefined') {
+    return [];
+  }
+
+  try {
+    const contentDir = getContentDirectory();
+    if (contentDir) {
+      const manifestPath = path.join(contentDir, 'blog', 'manifest.json');
+      if (fs.existsSync(manifestPath)) {
+        const content = fs.readFileSync(manifestPath, 'utf-8');
+        const manifest = JSON.parse(content);
+
+        if (manifest.articles && Array.isArray(manifest.articles)) {
+          return manifest.articles.slice(0, 6).map((article: { headline?: string; title?: string; category?: string; generated_at?: string }) => ({
+            title: article.headline || article.title || 'Untitled',
+            category: article.category || 'Article',
+            date: article.generated_at
+              ? new Date(article.generated_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+              : 'Recent',
+          }));
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Failed to load article previews:', error);
+  }
+
+  return [];
+}

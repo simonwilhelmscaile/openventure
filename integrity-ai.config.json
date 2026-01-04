@@ -1,0 +1,159 @@
+{
+  "idea": "AI-powered structural integrity assessment and forecasting using image analysis.",
+  "name": "StructAI",
+  "tagline": "Predicting structural health, pixel by pixel.",
+  "domain": "structai.vercel.app",
+  "business": {
+    "industry": "ai",
+    "category": "Predictive Maintenance",
+    "target_audience": "Asset Integrity Engineers, Plant Managers, Civil Engineers, and Infrastructure Owners in Oil & Gas, Construction, and Energy industries; Enterprise companies with 500+ employees.",
+    "pain_points": [
+      "Reliance on manual inspections for structural integrity.",
+      "High costs associated with reactive maintenance and repairs.",
+      "Inability to predict structural failures accurately.",
+      "Lack of real-time, data-driven insights into structural health."
+    ],
+    "value_proposition": "StructAI delivers accurate, predictive insights into structural integrity using AI-powered image analysis, enabling proactive maintenance, reduced costs, and improved safety.",
+    "unique_selling_points": [
+      "Proprietary, large-scale corrosion and general integrity image database.",
+      "Context-aware image analysis combined with deep learning models.",
+      "Model developed and validated by PhD-level expertise.",
+      "Predictive capabilities enabling proactive maintenance planning."
+    ]
+  },
+  "competitors": {
+    "urls": [],
+    "analyze_design": false,
+    "analyze_copy": false,
+    "analyze_pricing": false
+  },
+  "brand": {
+    "tone": "professional",
+    "personality": [
+      "innovative",
+      "trustworthy",
+      "expert"
+    ],
+    "colors": {
+      "primary": "#4F46E5",
+      "secondary": "#7C3AED",
+      "accent": "#6366F1",
+      "background": "#FFFFFF",
+      "text": "#111827"
+    },
+    "fonts": {
+      "heading": "Inter",
+      "body": "Inter"
+    }
+  },
+  "landing_page": {
+    "enabled": true,
+    "sections": {
+      "hero": {
+        "enabled": true,
+        "style": "centered",
+        "include_video": false
+      },
+      "social_proof": {
+        "enabled": true,
+        "logo_count": 6
+      },
+      "features": {
+        "enabled": true,
+        "count": 6,
+        "layout": "grid"
+      },
+      "feature_showcase": {
+        "enabled": true,
+        "count": 3,
+        "layout": "alternating"
+      },
+      "pricing": {
+        "enabled": false,
+        "tiers": 3,
+        "currency": "USD",
+        "billing_period": "monthly"
+      },
+      "testimonials": {
+        "enabled": true,
+        "count": 3
+      },
+      "faq": {
+        "enabled": true,
+        "count": 6
+      },
+      "cta": {
+        "enabled": true,
+        "style": "gradient"
+      },
+      "footer": {
+        "enabled": true,
+        "columns": 4
+      }
+    }
+  },
+  "blog": {
+    "enabled": true,
+    "article_count": 20,
+    "locale": "en-US",
+    "author": {
+      "name": "StructAI Team",
+      "role": "AI Research",
+      "company": "StructAI",
+      "image_url": ""
+    },
+    "seo": {
+      "primary_keyword": "AI corrosion detection",
+      "secondary_keywords": [
+        "structural integrity AI",
+        "predictive maintenance imaging",
+        "AI asset management",
+        "image-based structural analysis",
+        "corrosion prediction model"
+      ],
+      "keyword_density": 1.5
+    },
+    "content": {
+      "min_word_count": 2000,
+      "max_word_count": 3500,
+      "sections_per_article": 7,
+      "include_tldr": true,
+      "include_key_takeaways": true,
+      "include_tables": true,
+      "include_faqs": true,
+      "include_sources": true,
+      "internal_linking": true
+    }
+  },
+  "images": {
+    "generate_hero": true,
+    "generate_feature_icons": true,
+    "generate_blog_headers": true,
+    "style": "minimal",
+    "format": "webp",
+    "quality": 85
+  },
+  "deployment": {
+    "platform": "vercel",
+    "auto_deploy": true,
+    "preview_deployments": true,
+    "custom_domain": ""
+  },
+  "output": {
+    "directory": "./content",
+    "formats": {
+      "landing_page": "tsx",
+      "blog_articles": "json",
+      "images": "webp"
+    }
+  },
+  "advanced": {
+    "gemini_model": "gemini-2.0-flash-exp",
+    "temperature": 0.7,
+    "max_retries": 3,
+    "rate_limit_delay_ms": 1000,
+    "enable_competitor_analysis": false,
+    "enable_seo_optimization": true
+  },
+  "$schema": "./venture.schema.json"
+}

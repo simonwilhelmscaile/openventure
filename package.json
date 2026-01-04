@@ -9,6 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "playwright test",
+    "create-venture": "npx tsx scripts/create-venture.ts",
     "generate": "npx tsx scripts/generate.ts",
     "validate-links": "npx tsx scripts/validate-all-links.ts",
     "validate-urls": "npx tsx scripts/validate-urls.ts",

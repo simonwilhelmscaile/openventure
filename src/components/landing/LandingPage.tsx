@@ -27,7 +27,9 @@ export function LandingPage({ content }: LandingPageProps) {
         <section id="showcase">
           <FeatureShowcase content={content.feature_showcase} />
         </section>
-        <Pricing content={content.pricing} />
+        <section id="pricing">
+          <Pricing content={content.pricing} />
+        </section>
         <Testimonials content={content.testimonials} />
         <section id="faq">
           <FAQ content={content.faq} />

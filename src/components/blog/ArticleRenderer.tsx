@@ -1,6 +1,9 @@
+import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import type { Article, ArticleSection } from '@/lib/content/types';
+import type { Article } from '@/lib/content/types';
 import { getArticleSections, getKeyTakeaways } from '@/lib/content/articles';
+import { loadVentureConfig } from '@/lib/content/loader';
 
 interface ArticleRendererProps {
   article: Article;
@@ -12,9 +15,87 @@ interface ArticleRendererProps {
   };
 }
 
+/**
+ * Parse basic markdown to HTML
+ * Handles: **bold**, *italic*, `code`, [links](url), and lists
+ */
+function parseMarkdown(text: string): string {
+  let html = text;
+
+  // Escape HTML special chars first (except for ones we'll add)
+  html = html.replace(/&/g, '&amp;');
+
+  // Bold: **text** or __text__
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  html = html.replace(/__(.+?)__/g, '<strong>$1</strong>');
+
+  // Italic: *text* or _text_ (but not inside words)
+  html = html.replace(/(?<!\w)\*([^*]+)\*(?!\w)/g, '<em>$1</em>');
+  html = html.replace(/(?<!\w)_([^_]+)_(?!\w)/g, '<em>$1</em>');
+
+  // Inline code: `code`
+  html = html.replace(/`([^`]+)`/g, '<code class="rounded bg-[var(--bg-tertiary)] px-1.5 py-0.5 text-sm font-mono">$1</code>');
+
+  // Links: [text](url)
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-[var(--color-primary)] underline hover:no-underline" target="_blank" rel="noopener noreferrer">$1</a>');
+
+  return html;
+}
+
+/**
+ * Render paragraph content with markdown parsing
+ */
+function renderContent(content: string): React.ReactElement[] {
+  const paragraphs = content.split('\n\n');
+
+  return paragraphs.map((paragraph, i) => {
+    const trimmed = paragraph.trim();
+
+    // Check for unordered list
+    if (trimmed.match(/^[-*]\s/m)) {
+      const items = trimmed.split('\n').filter(line => line.match(/^[-*]\s/));
+      return (
+        <ul key={i} className="mt-4 list-disc space-y-2 pl-6">
+          {items.map((item, j) => (
+            <li
+              key={j}
+              dangerouslySetInnerHTML={{ __html: parseMarkdown(item.replace(/^[-*]\s/, '')) }}
+            />
+          ))}
+        </ul>
+      );
+    }
+
+    // Check for ordered list
+    if (trimmed.match(/^\d+\.\s/m)) {
+      const items = trimmed.split('\n').filter(line => line.match(/^\d+\.\s/));
+      return (
+        <ol key={i} className="mt-4 list-decimal space-y-2 pl-6">
+          {items.map((item, j) => (
+            <li
+              key={j}
+              dangerouslySetInnerHTML={{ __html: parseMarkdown(item.replace(/^\d+\.\s/, '')) }}
+            />
+          ))}
+        </ol>
+      );
+    }
+
+    // Regular paragraph
+    return (
+      <p
+        key={i}
+        className="mt-4"
+        dangerouslySetInnerHTML={{ __html: parseMarkdown(trimmed) }}
+      />
+    );
+  });
+}
+
 export function ArticleRenderer({ article, blogConfig }: ArticleRendererProps) {
   const sections = getArticleSections(article);
   const keyTakeaways = getKeyTakeaways(article);
+  const ventureConfig = loadVentureConfig();
 
   const formattedDate = new Date(article.publication_date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -22,8 +103,8 @@ export function ArticleRenderer({ article, blogConfig }: ArticleRendererProps) {
     day: 'numeric'
   });
 
-  const authorName = blogConfig?.author?.name || 'OpenVenture Team';
-  const authorTitle = blogConfig?.author?.title || 'Content Team';
+  const authorName = blogConfig?.author?.name || ventureConfig?.blog?.author?.name || 'Content Team';
+  const authorTitle = blogConfig?.author?.title || ventureConfig?.blog?.author?.role || 'Content Team';
 
   return (
     <article className="mx-auto max-w-3xl px-6 py-16">
@@ -62,6 +143,19 @@ export function ArticleRenderer({ article, blogConfig }: ArticleRendererProps) {
         </div>
       </header>
 
+      {/* Hero Image */}
+      {article.hero_image && (
+        <div className="relative mb-12 aspect-video overflow-hidden rounded-xl">
+          <Image
+            src={article.hero_image}
+            alt={article.hero_image_alt || article.Headline}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      )}
+
       {/* TLDR */}
       {article.TLDR && (
         <div className="mb-12 rounded-xl bg-[var(--bg-secondary)] p-6">
@@ -81,7 +175,7 @@ export function ArticleRenderer({ article, blogConfig }: ArticleRendererProps) {
           <ul className="space-y-3">
             {keyTakeaways.map((takeaway, index) => (
               <li key={index} className="flex items-start gap-3">
-                <svg className="mt-1 h-5 w-5 flex-shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="mt-1 h-5 w-5 flex-shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 <span className="text-[var(--text-secondary)]">{takeaway}</span>
@@ -106,9 +200,7 @@ export function ArticleRenderer({ article, blogConfig }: ArticleRendererProps) {
               {section.title}
             </h2>
             <div className="mt-4 text-[var(--text-secondary)]" style={{ lineHeight: 1.8 }}>
-              {section.content.split('\n\n').map((paragraph, i) => (
-                <p key={i} className="mt-4">{paragraph}</p>
-              ))}
+              {renderContent(section.content)}
             </div>
 
             {/* Insert table after section if applicable */}
@@ -207,7 +299,7 @@ export function ArticleRenderer({ article, blogConfig }: ArticleRendererProps) {
           href="/blog"
           className="inline-flex items-center gap-2 text-sm font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
         >
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
           Back to all articles

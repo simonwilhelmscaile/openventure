@@ -16,7 +16,7 @@
   --bg-elevated: #FFFFFF;
   --text-primary: #000000;
   --text-secondary: #4B5563;
-  --text-tertiary: #9CA3AF;
+  --text-tertiary: #6B7280; /* Increased contrast for accessibility (4.5:1 ratio) */
   --border-default: #E5E7EB;
   --border-hover: #D1D5DB;
 

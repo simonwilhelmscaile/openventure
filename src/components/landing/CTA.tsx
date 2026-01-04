@@ -47,14 +47,14 @@ export function CTA({ content }: CTAProps) {
             <>
               <a
                 href={content.primary_cta.href}
-                className="inline-flex items-center justify-center rounded-lg bg-white px-8 py-4 font-medium text-[#1B1B1B] transition-all hover:opacity-90 hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center rounded-lg bg-white px-8 h-[44px] font-medium text-[#1B1B1B] transition-all hover:opacity-90 hover:-translate-y-0.5"
               >
                 {content.primary_cta.text}
               </a>
               {content.secondary_cta && (
                 <a
                   href={content.secondary_cta.href}
-                  className="inline-flex items-center justify-center rounded-lg border border-white/20 px-8 py-4 font-medium text-white transition-all hover:bg-white/10"
+                  className="inline-flex items-center justify-center rounded-lg border border-white/20 px-8 h-[44px] font-medium text-white transition-all hover:bg-white/10"
                 >
                   {content.secondary_cta.text}
                 </a>

@@ -1,17 +1,21 @@
 import { StaticPage } from '@/components/layout/StaticPage';
+import { generateStaticPageMeta } from '@/lib/seo';
+import { getVentureMetadata } from '@/lib/content/loader';
+import type { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Privacy Policy | OpenVenture',
-  description: 'OpenVenture Privacy Policy - How we collect, use, and protect your data.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return generateStaticPageMeta('privacy');
+}
 
 export default function PrivacyPage() {
+  const venture = getVentureMetadata();
+
   return (
     <StaticPage title="Privacy Policy">
       <p className="text-[var(--text-tertiary)]">Last updated: December 2024</p>
 
       <p>
-        At OpenVenture, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose,
+        At {venture.name}, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose,
         and safeguard your information when you use our service.
       </p>
 
@@ -53,7 +57,7 @@ export default function PrivacyPage() {
 
       <h2 className="mt-8 text-2xl font-bold text-[var(--text-primary)]">Contact Us</h2>
       <p>
-        If you have questions about this Privacy Policy, please contact us at privacy@openventure.app.
+        If you have questions about this Privacy Policy, please contact us at privacy@{venture.domain}.
       </p>
     </StaticPage>
   );

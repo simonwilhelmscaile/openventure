@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import type { HeroContent } from '@/types';
 
 interface HeroProps {
@@ -55,10 +56,13 @@ export function Hero({ content }: HeroProps) {
 
         {content.image_url && (
           <div className="mt-16">
-            <img
+            <Image
               src={content.image_url}
               alt="Product preview"
+              width={1200}
+              height={675}
               className="mx-auto rounded-xl shadow-2xl"
+              priority
             />
           </div>
         )}

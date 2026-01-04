@@ -18,7 +18,7 @@ export function DeployPreview({ ventureName = 'openventure', domain = 'openventu
       {/* Vercel-style Header */}
       <div className="mb-4 flex items-center justify-between border-b border-gray-800 pb-3">
         <div className="flex items-center gap-2">
-          <svg className="h-4 w-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+          <svg className="h-4 w-4 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 2L2 22h20L12 2z" />
           </svg>
           <span className="text-xs text-white">Vercel</span>
@@ -33,7 +33,7 @@ export function DeployPreview({ ventureName = 'openventure', domain = 'openventu
       <div className="mb-4 space-y-2">
         {steps.map((step, i) => (
           <div key={i} className="flex items-center gap-2 text-[10px]">
-            <svg className="h-3 w-3 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="h-3 w-3 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
             <span className="text-gray-300">{step.label}</span>
@@ -47,7 +47,7 @@ export function DeployPreview({ ventureName = 'openventure', domain = 'openventu
         <div className="mb-2 text-[10px] text-gray-400">Production Deployment</div>
         <div className="flex items-center justify-between">
           <span className="text-xs font-medium text-white">{domain}</span>
-          <svg className="h-3 w-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="h-3 w-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
           </svg>
         </div>

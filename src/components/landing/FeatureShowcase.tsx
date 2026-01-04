@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { FeatureShowcaseContent, FeatureShowcase as FeatureShowcaseType } from '@/types';
 import { ConfigPreview, ArticlesPreview, DeployPreview } from '@/components/previews';
 
@@ -35,9 +36,11 @@ function ShowcaseItem({ showcase, index }: { showcase: FeatureShowcaseType; inde
       <div className="w-full lg:w-1/2">
         <div className="aspect-video overflow-hidden rounded-xl bg-[var(--bg-secondary)] shadow-xl">
           {showcase.image_url ? (
-            <img
+            <Image
               src={showcase.image_url}
               alt={showcase.headline}
+              width={640}
+              height={360}
               className="h-full w-full object-cover"
             />
           ) : showcase.video_url ? (
@@ -71,7 +74,7 @@ function ShowcaseItem({ showcase, index }: { showcase: FeatureShowcaseType; inde
         <ul className="mt-6 space-y-3">
           {showcase.bullets.map((bullet, index) => (
             <li key={index} className="flex items-start gap-3">
-              <svg className="mt-1 h-5 w-5 flex-shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="mt-1 h-5 w-5 flex-shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <span className="text-[var(--text-secondary)]">{bullet}</span>

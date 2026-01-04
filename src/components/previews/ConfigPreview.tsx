@@ -47,7 +47,7 @@ export function ConfigPreview({ ventureName = 'OpenVenture', tagline = 'Launch i
 function formatJSONLine(line: string): React.ReactNode {
   // Simple JSON syntax highlighting
   const parts: React.ReactNode[] = [];
-  let remaining = line;
+  const remaining = line;
   let key = 0;
 
   // Match strings
@@ -88,7 +88,7 @@ function formatJSONLine(line: string): React.ReactNode {
       let inBool = false;
       let inNum = false;
 
-      tokens.forEach((token, i) => {
+      tokens.forEach((token) => {
         if (token === '<BOOL>') inBool = true;
         else if (token === '</BOOL>') inBool = false;
         else if (token === '<NUM>') inNum = true;

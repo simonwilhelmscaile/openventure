@@ -1,0 +1,95 @@
+{
+  "name": "GreenLeaf Organics",
+  "idea": "A direct-to-consumer organic skincare brand that creates personalized skincare routines using AI skin analysis. GreenLeaf Organics combines clean, sustainable ingredients with cutting-edge technology to deliver custom formulations that actually work for your unique skin type.",
+  "tagline": "Your Skin, Personalized by Nature",
+  "domain": "greenleaforganics.com",
+  "business": {
+    "industry": "ecommerce",
+    "target_audience": "Health-conscious women aged 25-45 who want effective, clean skincare products but are overwhelmed by generic one-size-fits-all solutions",
+    "pain_points": [
+      "Generic skincare products that don't address individual needs",
+      "Confusion about which ingredients actually work",
+      "Concerns about harmful chemicals and sustainability",
+      "Expensive trial-and-error with products that don't deliver"
+    ],
+    "value_proposition": "Get a personalized, organic skincare routine that's scientifically formulated for your unique skin",
+    "unique_selling_points": [
+      "AI-powered skin analysis from a simple photo",
+      "100% organic, sustainably sourced ingredients",
+      "Custom formulations made fresh for you",
+      "30-day money-back guarantee",
+      "Carbon-neutral shipping"
+    ]
+  },
+  "brand": {
+    "colors": {
+      "primary": "#1A4D2E",
+      "secondary": "#2D5A3D",
+      "accent": "#8BC34A",
+      "background": "#FAFDF7",
+      "text": "#1A4D2E"
+    },
+    "font": {
+      "heading": "Playfair Display",
+      "body": "Lato"
+    }
+  },
+  "blog": {
+    "article_count": 10,
+    "min_word_count": 2000,
+    "locale": "en-US",
+    "seo": {
+      "primary_keyword": "organic skincare",
+      "secondary_keywords": [
+        "personalized skincare routine",
+        "clean beauty products",
+        "sustainable skincare",
+        "natural skincare ingredients",
+        "custom skincare formulation"
+      ]
+    },
+    "author": {
+      "name": "Dr. Sarah Mitchell",
+      "role": "Chief Formulator",
+      "company": "GreenLeaf Organics"
+    }
+  },
+  "content": {
+    "features": [
+      {
+        "title": "AI Skin Analysis",
+        "description": "Upload a photo and our AI analyzes your skin type, concerns, and environmental factors to create your perfect routine."
+      },
+      {
+        "title": "Clean Ingredients",
+        "description": "Every product features organic, ethically sourced ingredients. No parabens, sulfates, or synthetic fragrances."
+      },
+      {
+        "title": "Made Fresh",
+        "description": "Your custom formulations are made to order in small batches, ensuring maximum potency and freshness."
+      }
+    ],
+    "pricing": {
+      "tiers": [
+        {
+          "name": "Essential Kit",
+          "price": "$59/month",
+          "description": "Start your clean skincare journey",
+          "features": ["Personalized cleanser", "Custom moisturizer", "Free skin analysis", "Free shipping"]
+        },
+        {
+          "name": "Complete Routine",
+          "price": "$99/month",
+          "description": "Full personalized regimen",
+          "features": ["Cleanser + Toner + Serum", "Day & Night Moisturizer", "Quarterly reformulation", "Priority support"]
+        },
+        {
+          "name": "Premium Care",
+          "price": "$159/month",
+          "description": "The ultimate skincare experience",
+          "features": ["7-product routine", "Monthly skin check-ins", "Exclusive ingredients", "Dermatologist access", "Luxury packaging"]
+        }
+      ]
+    }
+  }
+}

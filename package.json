@@ -9,7 +9,12 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "playwright test",
-    "generate": "npx tsx scripts/generate.ts"
+    "generate": "npx tsx scripts/generate.ts",
+    "validate-urls": "npx tsx scripts/validate-urls.ts",
+    "score-articles": "npx tsx scripts/score-articles.ts",
+    "lighthouse": "lhci autorun",
+    "lighthouse:collect": "lhci collect --url=http://localhost:3000/",
+    "lighthouse:assert": "lhci assert"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -22,6 +27,7 @@
     "zod": "^4.2.1"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.57.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20.19.27",

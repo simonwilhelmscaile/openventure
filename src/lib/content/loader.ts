@@ -6,10 +6,18 @@ import { demoLandingContent } from '@/lib/demo-content';
 // Content directories to check
 const CONTENT_DIRS = ['./content', './output'];
 
-interface VentureConfig {
+export interface VentureConfig {
   name: string;
   tagline: string;
   domain: string;
+  business?: {
+    industry?: string;
+    category?: string;
+    target_audience?: string;
+    pain_points?: string[];
+    value_proposition?: string;
+    unique_selling_points?: string[];
+  };
   brand: {
     colors: {
       primary: string;
@@ -19,11 +27,16 @@ interface VentureConfig {
       text: string;
     };
   };
-  blog: {
-    author: {
+  blog?: {
+    author?: {
       name: string;
       role: string;
       company: string;
+    };
+    seo?: {
+      primary_keyword?: string;
+      secondary_keywords?: string[];
+      keyword_density?: number;
     };
   };
 }

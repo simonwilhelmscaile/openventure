@@ -101,6 +101,18 @@ CONTENT GUIDELINES:
 - Be authoritative but accessible
 - Naturally include keywords (1-2% density)
 
+INTERNAL LINKING:
+- Include 3-5 internal link opportunities in the content
+- Link to: other articles, /pricing, /#features
+- Use descriptive anchor text (never "click here")
+- Format: [anchor text](/path)
+
+EXTERNAL CITATIONS:
+- Include 5-10 authoritative external source references
+- Link to: research papers, industry reports, reputable sources
+- Use descriptive anchor text for citations
+- Prefer: .edu, .gov, major publications, industry leaders
+
 OUTPUT FORMAT:
 Return ONLY valid JSON:
 {
@@ -108,6 +120,13 @@ Return ONLY valid JSON:
   "subtitle": "...",
   "teaser": "...",
   "tldr": "...",
+  "direct_answer": "A 40-60 word direct answer to the main question for featured snippets",
+  "people_also_ask": [
+    {"question": "Related question 1?", "answer": "Concise answer..."},
+    {"question": "Related question 2?", "answer": "Concise answer..."},
+    {"question": "Related question 3?", "answer": "Concise answer..."},
+    {"question": "Related question 4?", "answer": "Concise answer..."}
+  ],
   "key_takeaways": [
     {"id": "kt-1", "text": "...", "order": 0}
   ],
@@ -115,7 +134,7 @@ Return ONLY valid JSON:
     {
       "id": "section-1",
       "title": "...",
-      "content": "Full section content here with multiple paragraphs...",
+      "content": "Full section content with [internal links](/path) and [external citations](https://source.com)...",
       "order": 0
     }
   ],
@@ -132,6 +151,9 @@ Return ONLY valid JSON:
       ],
       "caption": "..."
     }
+  ],
+  "sources": [
+    {"title": "Source name", "url": "https://example.com", "description": "Brief description"}
   ]
 }
 `.trim();

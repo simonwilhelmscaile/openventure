@@ -56,7 +56,14 @@ screenshot*.png
 
 # Playwright
 playwright-report/
-test-results/
+
+# Lighthouse CI
+.lighthouseci/
 
 # Test configs
 test-venture.config.json
+test-*.config.json
+test-results/
+
+# TODO files (internal tracking)
+TODO-FINAL-PUSH.md

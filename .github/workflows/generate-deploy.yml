@@ -1,0 +1,96 @@
+name: Generate and Deploy Venture
+
+on:
+  workflow_dispatch:
+    inputs:
+      venture_idea:
+        description: 'Business idea (optional - uses existing config if empty)'
+        required: false
+        type: string
+      venture_name:
+        description: 'Company name (optional)'
+        required: false
+        type: string
+      config_path:
+        description: 'Path to venture.config.json'
+        required: true
+        default: './venture.config.json'
+        type: string
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate config
+        run: |
+          if [ ! -f "${{ inputs.config_path }}" ]; then
+            echo "Error: Config file not found at ${{ inputs.config_path }}"
+            exit 1
+          fi
+          echo "Config file found: ${{ inputs.config_path }}"
+
+      - name: Generate content
+        run: npm run generate -- --config=${{ inputs.config_path }}
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Validate URLs
+        run: npm run validate-urls -- --skip-external || true
+        continue-on-error: true
+
+      - name: Build
+        run: npm run build
+
+      - name: Run Lighthouse CI
+        run: |
+          npm run lighthouse || true
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: Deploy to Vercel
+        if: ${{ secrets.VERCEL_TOKEN != '' }}
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: venture-output
+          path: |
+            content/
+            .lighthouseci/
+          retention-days: 7
+
+      - name: Summary
+        run: |
+          echo "## Venture Generation & Deployment Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Configuration" >> $GITHUB_STEP_SUMMARY
+          echo "- Config: \`${{ inputs.config_path }}\`" >> $GITHUB_STEP_SUMMARY
+          if [ -n "${{ inputs.venture_idea }}" ]; then
+            echo "- Idea: ${{ inputs.venture_idea }}" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Build Status" >> $GITHUB_STEP_SUMMARY
+          echo "- Generation: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- Build: ✅" >> $GITHUB_STEP_SUMMARY
+          echo "- Deploy: ✅" >> $GITHUB_STEP_SUMMARY

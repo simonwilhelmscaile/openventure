@@ -8,6 +8,9 @@ export interface Article {
   read_time: number;
   word_count: number;
   category?: string;
+  hero_image?: string;
+  hero_image_alt?: string;
+  thumbnail?: string;
   key_takeaway_01?: string;
   key_takeaway_02?: string;
   key_takeaway_03?: string;

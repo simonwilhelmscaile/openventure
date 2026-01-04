@@ -8,11 +8,14 @@ interface FAQProps {
 }
 
 function FAQAccordionItem({ item, isOpen, onToggle }: { item: FAQItem; isOpen: boolean; onToggle: () => void }) {
+  const panelId = `faq-panel-${item.id}`;
   return (
     <div className="border-b border-[var(--border-default)]">
       <button
         onClick={onToggle}
-        className="flex w-full items-center justify-between py-6 text-left"
+        className="flex w-full items-center justify-between py-6 text-left min-h-[44px]"
+        aria-expanded={isOpen}
+        aria-controls={panelId}
       >
         <span className="text-lg font-medium text-[var(--text-primary)]">
           {item.question}
@@ -22,12 +25,16 @@ function FAQAccordionItem({ item, isOpen, onToggle }: { item: FAQItem; isOpen: b
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
+          aria-hidden="true"
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
       <div
+        id={panelId}
         className={`overflow-hidden transition-all ${isOpen ? 'max-h-96 pb-6' : 'max-h-0'}`}
+        role="region"
+        aria-hidden={!isOpen}
       >
         <p className="text-[var(--text-secondary)]" style={{ lineHeight: 1.7 }}>
           {item.answer}

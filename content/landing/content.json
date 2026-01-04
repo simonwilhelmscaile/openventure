@@ -1,17 +1,17 @@
 {
-  "venture_id": "-c44HWhs0RrRWcxF1UDgP",
-  "venture_name": "OpenVenture",
-  "generated_at": "2026-01-03T23:15:35.931Z",
+  "venture_id": "22p1cEvFENxhOxAee-1p4",
+  "venture_name": "TrueStack",
+  "generated_at": "2026-01-04T07:03:56.505Z",
   "hero": {
-    "badge": "AI-Powered",
-    "headline": "Launch Your Business Online in Minutes with AI",
-    "subheadline": "Generate a complete website and SEO-optimized blog content instantly. Go from idea to online presence faster than ever before.",
+    "badge": "New Platform",
+    "headline": "Streamline Your Agency Workflow. Double Your Impact.",
+    "subheadline": "TrueStack provides transparent pricing and dedicated account managers, ensuring exceptional results and clear communication for growing businesses.",
     "primary_cta": {
       "text": "Get Started",
       "href": "#pricing"
     },
     "secondary_cta": {
-      "text": "Watch Demo",
+      "text": "Learn More",
       "href": "#features"
     }
   },
@@ -45,73 +45,73 @@
     ]
   },
   "features": {
-    "headline": "Why choose OpenVenture?",
+    "headline": "Why choose TrueStack?",
     "subheadline": "Everything you need to succeed",
     "features": [
       {
         "id": "feature-1",
-        "icon": "zap",
-        "title": "Launch in Minutes, Not Weeks",
-        "description": "Stop wasting precious time on website development. OpenVenture generates a complete, production-ready website from your business idea in just minutes, letting you focus on what matters most.",
+        "icon": "shield",
+        "title": "Transparent Pricing, No Surprises",
+        "description": "Gain complete control over your marketing budget. TrueStack offers clear, upfront pricing with no hidden fees, ensuring predictable costs and maximum ROI. Say goodbye to unexpected bills and hello to budget certainty.",
         "features": [
-          "Instant website generation from a single config file.",
-          "Production-ready Next.js codebase for optimal performance.",
-          "Skip the learning curve and development headaches."
+          "Fixed-fee project quotes for budget predictability",
+          "Detailed breakdowns of all costs involved",
+          "No hidden charges or surprise invoices"
         ]
       },
       {
         "id": "feature-2",
-        "icon": "chart",
-        "title": "SEO-Optimized Content Included",
-        "description": "Attract customers from day one with built-in SEO. OpenVenture creates 10 high-quality, SEO-optimized blog articles tailored to your niche, driving organic traffic to your site.",
+        "icon": "users",
+        "title": "Dedicated Expert Team",
+        "description": "Stop juggling freelancers and get consistent, reliable expertise. TrueStack provides a dedicated team of seasoned professionals committed to your success, ensuring seamless collaboration and exceptional results.",
         "features": [
-          "10 automatically generated, SEO-friendly articles.",
-          "Attract your target audience with relevant content.",
-          "Save thousands on expensive copywriting services."
+          "Access to a team of specialists (SEO, content, design)",
+          "Consistent communication and dedicated point of contact",
+          "Reduces the risk of inconsistent quality from freelancers"
         ]
       },
       {
         "id": "feature-3",
-        "icon": "shield",
-        "title": "Production-Ready, Secure Code",
-        "description": "Built on the robust Next.js framework, OpenVenture ensures a secure, scalable, and high-performing website. Focus on your business, knowing your website is built to last.",
+        "icon": "chart",
+        "title": "Data-Driven, Measurable Results",
+        "description": "We don't just deliver campaigns; we deliver results. TrueStack focuses on measurable KPIs and provides transparent reporting, so you can see the direct impact of our work on your bottom line. ",
         "features": [
-          "Industry-standard Next.js framework.",
-          "Secure and scalable architecture.",
-          "Future-proof your online presence."
+          "Customized KPI tracking aligned with your business goals",
+          "Regular performance reports with actionable insights",
+          "Data-driven strategies for optimal campaign performance"
         ]
       },
       {
         "id": "feature-4",
-        "icon": "globe",
-        "title": "One-Click Vercel Deployment",
-        "description": "Go live instantly with seamless Vercel integration. OpenVenture offers one-click deployment, making launching your website effortless and stress-free. No technical expertise required.",
+        "icon": "clock",
+        "title": "Fast Turnaround, Superior Quality",
+        "description": "Need results fast without compromising quality? TrueStack balances efficiency with excellence, delivering high-quality work within agreed timelines. Get your campaigns launched sooner and see faster returns.",
         "features": [
-          "Effortless one-click deployment to Vercel.",
-          "Instant online presence with minimal effort.",
-          "No server configuration or maintenance required."
+          "Streamlined workflows for faster project completion",
+          "Efficient communication to minimize delays",
+          "Quality assurance processes to guarantee high standards"
         ]
       },
       {
         "id": "feature-5",
-        "icon": "users",
-        "title": "Focus on Your Product",
-        "description": "Stop wasting time on marketing tasks. OpenVenture empowers technical founders to concentrate on core product development, leaving the website and content creation to us.",
+        "icon": "lock",
+        "title": "Secure and Reliable Platform",
+        "description": "Your data security is our priority. TrueStack's platform is built with robust security measures to protect your sensitive information and ensure your peace of mind. Focus on your business, not data breaches.",
         "features": [
-          "Free up valuable time for product development.",
-          "Delegate website and content creation tasks.",
-          "Increase productivity and accelerate growth."
+          "Enterprise-grade security infrastructure",
+          "Regular security audits and updates",
+          "Data encryption to protect sensitive information"
         ]
       },
       {
         "id": "feature-6",
-        "icon": "check",
-        "title": "Complete Web Presence, Simplified",
-        "description": "From website design to SEO content, OpenVenture handles everything. Get a professional online presence without the complexity and cost of traditional development.",
+        "icon": "star",
+        "title": "Proven Track Record of Success",
+        "description": "Partner with a team that's consistently delivered outstanding results for growing businesses. TrueStack's experience and proven methodologies ensure your marketing investments are in safe hands. See the TrueStack difference.",
         "features": [
-          "All-in-one solution for website and content needs.",
-          "Simplified website creation process.",
-          "Cost-effective alternative to hiring developers and copywriters."
+          "Case studies showcasing successful client campaigns",
+          "Expert team with years of industry experience",
+          "Strategic approach tailored to your specific needs"
         ]
       }
     ]
@@ -120,57 +120,54 @@
     "showcases": [
       {
         "id": "showcase-1",
-        "headline": "Website in Minutes: Code-Free Creation",
-        "subheadline": "Transform your business idea into a fully functional website with just one configuration file.",
-        "description": "OpenVenture eliminates the complexities of web development. Simply define your business idea, target audience, and key features in a single configuration file. Our AI engine then generates production-ready Next.js code, complete with visually appealing designs, responsive layouts, and essential pages like About Us, Contact, and Services. Skip months of development and launch your website today.",
+        "headline": "Transparent Pricing: No Hidden Surprises",
+        "subheadline": "Gain complete clarity and control over your marketing budget with our upfront pricing.",
+        "description": "TrueStack believes in building trust through transparency. Our pricing model is straightforward and all-inclusive, eliminating unexpected costs and budget overruns. You'll receive a detailed breakdown of all expenses before we start any project, ensuring complete alignment and peace of mind. Focus on your strategy, not deciphering invoices.",
         "bullets": [
-          "Generate entire websites from a single configuration file",
-          "Production-ready Next.js codebase for optimal performance",
-          "Responsive design ensures compatibility across all devices",
-          "Customizable templates to match your brand identity",
-          "Integrated contact forms and lead capture tools",
-          "Option to add e-commerce functionality"
+          "Clear, upfront pricing for all services.",
+          "Detailed proposals outlining all costs.",
+          "No hidden fees or surprise charges.",
+          "Budget management tools and reporting.",
+          "Predictable and consistent billing cycles."
         ],
         "cta": {
-          "text": "Start Building Now",
+          "text": "Get a Quote",
           "href": "#"
         },
         "image_position": "left"
       },
       {
         "id": "showcase-2",
-        "headline": "SEO-Optimized Content: Attract More Customers",
-        "subheadline": "Kickstart your content marketing with 10 AI-generated, SEO-friendly blog articles tailored to your niche.",
-        "description": "OpenVenture doesn't just build your website; it helps you attract customers. Each website comes with 10 unique, SEO-optimized blog articles generated by our AI. These articles are designed to target relevant keywords, improve your search engine ranking, and drive organic traffic to your site. Focus on your business, while we handle the content creation.",
+        "headline": "Data-Driven Results: KPIs That Matter",
+        "subheadline": "Track your success with real-time analytics and measurable key performance indicators.",
+        "description": "We're not just about pretty visuals; we're about driving tangible results. TrueStack's results-driven approach focuses on defining and tracking key performance indicators (KPIs) relevant to your business goals. Our comprehensive reporting provides real-time insights into campaign performance, allowing us to optimize strategies and maximize your return on investment. We transform data into actionable intelligence.",
         "bullets": [
-          "10 SEO-optimized blog articles included with every website",
-          "AI-powered content generation ensures relevance and quality",
-          "Keyword research and optimization for improved search ranking",
-          "Articles cover key topics related to your business idea",
-          "Drives organic traffic and attracts potential customers",
-          "Save time and resources on content creation"
+          "Customized KPIs aligned with your business objectives.",
+          "Real-time performance dashboards and reporting.",
+          "Data-driven insights for continuous improvement.",
+          "Regular performance reviews and strategy adjustments.",
+          "Transparent tracking of ROI and campaign effectiveness."
         ],
         "cta": {
-          "text": "See Example Articles",
+          "text": "See Case Studies",
           "href": "#"
         },
         "image_position": "right"
       },
       {
         "id": "showcase-3",
-        "headline": "One-Click Deployment: Launch Instantly",
-        "subheadline": "Deploy your entire website to Vercel with a single click, making your business visible immediately.",
-        "description": "OpenVenture simplifies the deployment process. With our one-click Vercel deployment feature, you can launch your website instantly. No need to worry about server configurations, complex deployments, or ongoing maintenance. Focus on growing your business, knowing your website is live and accessible to your target audience. Get online faster and start generating leads today.",
+        "headline": "Rapid Turnaround: Quality Without Compromise",
+        "subheadline": "Accelerate your marketing efforts with our efficient processes and dedicated team.",
+        "description": "In today's fast-paced market, speed is critical. TrueStack delivers exceptional results with rapid turnaround times, without sacrificing quality or attention to detail. Our streamlined processes and dedicated team of experts ensure your projects are completed efficiently and effectively, allowing you to stay ahead of the competition. We prioritize agility and responsiveness.",
         "bullets": [
-          "One-click deployment to Vercel for instant launch",
-          "No server configuration or maintenance required",
-          "Automatic scaling to handle traffic spikes",
-          "Secure and reliable hosting environment",
-          "Free SSL certificate included for enhanced security",
-          "Simplified deployment process for non-technical users"
+          "Dedicated project managers for seamless execution.",
+          "Streamlined workflows for faster delivery.",
+          "Efficient communication and collaboration.",
+          "Agile methodologies for adaptability.",
+          "Rigorous quality assurance processes."
         ],
         "cta": {
-          "text": "Deploy Your Site",
+          "text": "Request a Demo",
           "href": "#"
         },
         "image_position": "left"
@@ -178,46 +175,38 @@
     ]
   },
   "pricing": {
-    "headline": "Launch Your Vision: Transparent Pricing for OpenVenture",
-    "subheadline": "Choose the plan that empowers your entrepreneurial journey.",
+    "headline": "Simple, transparent pricing",
+    "subheadline": "Choose the plan that's right for your agency's growth.",
     "tiers": [
       {
         "id": "tier-1",
-        "name": "Seed",
-        "description": "Ideal for solo founders and early explorations.",
+        "name": "Launch",
+        "description": "Ideal for growing businesses getting started with TrueStack.",
         "price": {
-          "monthly": 49,
-          "yearly": 490
+          "monthly": 499,
+          "yearly": 4990
         },
         "currency": "USD",
-        "billing_text": "per month",
+        "billing_text": "per month, billed monthly or annually",
         "features": [
           {
-            "text": "1 Website Generation",
+            "text": "Up to 3 Client Projects",
             "included": true
           },
           {
-            "text": "Up to 3 SEO Blog Posts/Month",
+            "text": "Basic Project Management Tools",
             "included": true
           },
           {
-            "text": "Basic AI Content Optimization",
+            "text": "Standard Reporting Dashboard",
             "included": true
           },
           {
-            "text": "Standard Website Templates",
-            "included": true
+            "text": "Dedicated Account Manager",
+            "included": false
           },
           {
-            "text": "Community Support",
-            "included": true
-          },
-          {
-            "text": "Basic Analytics Dashboard",
-            "included": true
-          },
-          {
-            "text": "Custom Domain Integration",
+            "text": "Custom Integrations",
             "included": false
           },
           {
@@ -225,12 +214,12 @@
             "included": false
           },
           {
-            "text": "Advanced SEO Optimization",
-            "included": false
+            "text": "Team Collaboration Features",
+            "included": true
           }
         ],
         "cta": {
-          "text": "Start Your Seed",
+          "text": "Start Your Free Trial",
           "href": "#signup"
         },
         "highlighted": false
@@ -238,102 +227,74 @@
       {
         "id": "tier-2",
         "name": "Growth",
-        "description": "Designed for growing startups seeking rapid expansion.",
+        "description": "The perfect package for scaling your agency and expanding your client base.",
         "price": {
-          "monthly": 99,
-          "yearly": 990
+          "monthly": 999,
+          "yearly": 9990
         },
         "currency": "USD",
-        "billing_text": "per month",
+        "billing_text": "per month, billed monthly or annually",
         "features": [
           {
-            "text": "3 Website Generations",
+            "text": "Up to 10 Client Projects",
             "included": true
           },
           {
-            "text": "Up to 10 SEO Blog Posts/Month",
+            "text": "Advanced Project Management Tools",
             "included": true
           },
           {
-            "text": "Advanced AI Content Optimization",
-            "included": true
-          },
-          {
-            "text": "Premium Website Templates",
-            "included": true
-          },
-          {
-            "text": "Priority Email Support",
-            "included": true
-          },
-          {
-            "text": "Advanced Analytics Dashboard",
-            "included": true
-          },
-          {
-            "text": "Custom Domain Integration",
-            "included": true
-          },
-          {
-            "text": "Basic CRM Integration",
+            "text": "Customizable Reporting Dashboard",
             "included": true
           },
           {
             "text": "Dedicated Account Manager",
+            "included": true
+          },
+          {
+            "text": "Standard Integrations",
+            "included": true
+          },
+          {
+            "text": "Priority Support",
             "included": false
           },
           {
-            "text": "AI-Powered Keyword Research",
-            "included": false
+            "text": "Team Collaboration Features",
+            "included": true
+          },
+          {
+            "text": "Client Portal Access",
+            "included": true
           }
         ],
         "cta": {
-          "text": "Fuel Your Growth",
+          "text": "Start Your Free Trial",
           "href": "#signup"
         },
         "highlighted": true
       },
       {
         "id": "tier-3",
-        "name": "Scale",
-        "description": "For established businesses demanding maximum AI power.",
+        "name": "Enterprise",
+        "description": "For established agencies requiring maximum resources and customized solutions.",
         "price": {
-          "monthly": 199,
-          "yearly": 1990
+          "monthly": 1999,
+          "yearly": 19990
         },
         "currency": "USD",
-        "billing_text": "per month",
+        "billing_text": "per month, billed monthly or annually",
         "features": [
           {
-            "text": "Unlimited Website Generations",
+            "text": "Unlimited Client Projects",
             "included": true
           },
           {
-            "text": "Unlimited SEO Blog Posts",
+            "text": "Advanced Project Management Tools",
             "included": true
           },
           {
-            "text": "AI-Powered Keyword Research",
-            "included": true
-          },
-          {
-            "text": "Enterprise Website Templates & Customization",
-            "included": true
-          },
-          {
-            "text": "Priority Phone & Email Support",
-            "included": true
-          },
-          {
-            "text": "Comprehensive Analytics & Reporting",
-            "included": true
-          },
-          {
-            "text": "Custom Domain Integration",
-            "included": true
-          },
-          {
-            "text": "Advanced CRM & Marketing Automation Integration",
+            "text": "Customizable Reporting Dashboard",
             "included": true
           },
           {
@@ -341,13 +302,33 @@
             "included": true
           },
           {
-            "text": "Custom AI Training (Based on Your Data)",
+            "text": "Custom Integrations",
+            "included": true
+          },
+          {
+            "text": "Priority Support",
+            "included": true
+          },
+          {
+            "text": "Team Collaboration Features",
+            "included": true
+          },
+          {
+            "text": "Client Portal Access",
+            "included": true
+          },
+          {
+            "text": "API Access",
+            "included": true
+          },
+          {
+            "text": "White-Label Options",
             "included": true
           }
         ],
         "cta": {
-          "text": "Unleash Your Scale",
-          "href": "#signup"
+          "text": "Contact Us",
+          "href": "#contact"
         },
         "highlighted": false
       }
@@ -359,31 +340,31 @@
     "testimonials": [
       {
         "id": "testimonial-1",
-        "quote": "As a non-technical founder, OpenVenture was a lifesaver! I had a basic idea for my dog walking business, and within an hour, I had a fully functional website and blog. It's saved me weeks of work and thousands on a developer. Highly recommend!",
+        "quote": "TrueStack has been a game-changer for our marketing efforts. The dedicated account manager really understood our needs and provided tailored solutions. We've seen a significant increase in lead generation and a much clearer understanding of our marketing spend. Highly recommend!",
         "author": {
           "name": "Sarah Chen",
-          "title": "Founder",
-          "company": "Pawsitive Adventures"
+          "title": "Marketing Director",
+          "company": "BloomTech Solutions"
         },
         "rating": 5
       },
       {
         "id": "testimonial-2",
-        "quote": "OpenVenture helped us launch our MVP faster than we ever thought possible. The AI-generated content is surprisingly good and gave us a solid SEO foundation. We're already seeing an increase in organic traffic to our site for 'sustainable packaging'.",
+        "quote": "I was initially hesitant to switch agencies, but TrueStack's transparent pricing and focus on communication won me over. The results speak for themselves – a 30% increase in website traffic in just three months. Finally, an agency that delivers on its promises!",
         "author": {
-          "name": "David Lee",
-          "title": "CTO",
-          "company": "EcoPack Solutions"
+          "name": "David Miller",
+          "title": "Head of Marketing",
+          "company": "Urban Eats Cafe"
         },
         "rating": 4
       },
       {
         "id": "testimonial-3",
-        "quote": "I'm a solo entrepreneur and time is my most valuable asset. OpenVenture allowed me to create a professional-looking website and generate consistent blog content for my coaching business in a fraction of the time it would have taken me otherwise. A true game-changer!",
+        "quote": "TrueStack's platform is incredibly user-friendly, and the dedicated account manager is always available to answer our questions. Since partnering with them, our social media engagement has skyrocketed, and we're reaching a wider audience than ever before. Great value for money!",
         "author": {
-          "name": "Maria Rodriguez",
-          "title": "Founder & CEO",
-          "company": "EmpowerU Coaching"
+          "name": "Emily Rodriguez",
+          "title": "VP of Marketing",
+          "company": "Global Health Corp"
         },
         "rating": 5
       }
@@ -395,55 +376,55 @@
     "items": [
       {
         "id": "faq-1",
-        "question": "How much does OpenVenture cost?",
-        "answer": "OpenVenture offers tiered pricing plans to suit different needs and budgets. Our pricing is based on the number of websites and blog posts generated per month. Visit our pricing page for a detailed breakdown of each plan and included features."
+        "question": "How does TrueStack's pricing work? Are there any hidden fees?",
+        "answer": "We believe in complete transparency. Our pricing is based on a clear, project-by-project basis, outlined in our proposals. You'll know exactly what you're paying for upfront. There are absolutely no hidden fees or surprise charges. We want you to focus on results, not deciphering invoices."
       },
       {
         "id": "faq-2",
-        "question": "I'm not a tech expert. Is OpenVenture easy to use?",
-        "answer": "Absolutely! OpenVenture is designed with non-technical users in mind. Our intuitive interface guides you through the entire process, from idea to website and content. We also provide helpful tutorials and documentation."
+        "question": "What makes TrueStack different from other agencies?",
+        "answer": "TrueStack combines cutting-edge technology with intuitive design to deliver exceptional results. We prioritize clear communication and transparent pricing. Our platform is built for growing businesses, offering a scalable solution that adapts to your evolving needs. We're not just an agency; we're a growth partner."
       },
       {
         "id": "faq-3",
-        "question": "What kind of website can OpenVenture create?",
-        "answer": "OpenVenture can generate a variety of website types, including landing pages, business websites, portfolios, and more. The AI adapts to your specific business idea to create a relevant and professional website design."
+        "question": "What kind of security measures do you have in place to protect my data?",
+        "answer": "Data security is a top priority. We employ industry-standard security protocols, including encryption, regular security audits, and strict access controls. We are committed to protecting your confidential information and ensuring the integrity of our platform. We also comply with all relevant data privacy regulations."
       },
       {
         "id": "faq-4",
-        "question": "How original is the blog content that OpenVenture generates?",
-        "answer": "Our AI generates original content based on your business idea and keywords. While we encourage you to review and personalize the content to align with your brand voice, the foundation provided is plagiarism-free and SEO-optimized."
+        "question": "What kind of support do you offer if I have questions or issues?",
+        "answer": "We offer comprehensive support through multiple channels, including email, phone, and a dedicated account manager. Our support team is available to answer your questions, troubleshoot any issues, and provide guidance on maximizing the value of our platform. We're committed to your success."
       },
       {
         "id": "faq-5",
-        "question": "What kind of support do you offer?",
-        "answer": "We offer comprehensive support via email and a detailed knowledge base. Higher-tier plans include priority support and dedicated onboarding assistance to help you get the most out of OpenVenture."
+        "question": "How long does it take to get onboarded with TrueStack?",
+        "answer": "Our onboarding process is designed to be quick and efficient. Typically, it takes just a few days to get fully onboarded. We'll guide you through each step, providing personalized training and support to ensure a smooth transition. We aim to minimize disruption and maximize your time to value."
       },
       {
         "id": "faq-6",
-        "question": "How secure is my data on OpenVenture?",
-        "answer": "Security is our top priority. We use industry-standard encryption and security protocols to protect your data. We also regularly back up your data to prevent any loss. We are fully GDPR compliant."
+        "question": "What if I'm not satisfied with the results I'm seeing?",
+        "answer": "We are committed to delivering results. We closely monitor performance and provide regular reports. If you're not satisfied, we'll work with you to identify the cause and implement corrective actions. Our goal is to ensure your success and build a long-term partnership."
       },
       {
         "id": "faq-7",
-        "question": "Can I customize the website and content after it's generated?",
-        "answer": "Yes! You have full control over your website and content. You can easily edit the design, text, images, and SEO settings within our platform. Think of OpenVenture as your powerful starting point."
+        "question": "Can TrueStack integrate with my existing marketing tools?",
+        "answer": "Yes, TrueStack is designed to integrate seamlessly with many popular marketing tools and platforms. We offer APIs and integrations to streamline your workflow and avoid data silos. Please contact us with specific integration requests, and we'll assess compatibility and provide guidance."
       },
       {
         "id": "faq-8",
-        "question": "What if I'm not happy with the generated website or content?",
-        "answer": "We offer a satisfaction guarantee. If you're not happy with the initial results, you can regenerate the website and content with different prompts or keywords. Our support team is also available to assist you in refining the output."
+        "question": "I'm a marketing director and am busy. How much time will this take on my end?",
+        "answer": "We understand your time is valuable. TrueStack is designed to be efficient. While initial onboarding requires some input, we'll handle the heavy lifting. We'll keep you updated with regular reports and strategic discussions, ensuring you're always informed without being overwhelmed. We aim to be an extension of your team, not a burden."
       }
     ]
   },
   "cta": {
-    "headline": "Stop Waiting, Start Building Today!",
-    "subheadline": "Launch your dream venture now with OpenVenture. No code, no hassle, just results in minutes.",
+    "headline": "Double Your Impact. Half the Time.",
+    "subheadline": "Ready to streamline your marketing efforts and achieve smarter workflows? Unlock unparalleled efficiency with TrueStack.",
     "primary_cta": {
       "text": "Get Started",
       "href": "#signup"
     },
     "secondary_cta": {
-      "text": "See Demo",
+      "text": "See a Demo",
       "href": "#demo"
     },
     "background_style": "gradient"
@@ -464,10 +445,6 @@
           {
             "text": "Integrations",
             "href": "/integrations"
-          },
-          {
-            "text": "Security",
-            "href": "/security"
           }
         ]
       },
@@ -483,12 +460,8 @@
             "href": "/careers"
           },
           {
-            "text": "Contact Us",
+            "text": "Contact",
             "href": "/contact"
-          },
-          {
-            "text": "News",
-            "href": "/news"
           }
         ]
       },
@@ -506,10 +479,6 @@
           {
             "text": "Documentation",
             "href": "/docs"
-          },
-          {
-            "text": "API",
-            "href": "/api"
           }
         ]
       },
@@ -526,11 +495,7 @@
           },
           {
             "text": "Cookie Policy",
-            "href": "/cookie-policy"
-          },
-          {
-            "text": "GDPR",
-            "href": "/gdpr"
+            "href": "/cookies"
           }
         ]
       }
@@ -538,42 +503,33 @@
     "social_links": [
       {
         "platform": "twitter",
-        "href": "https://twitter.com/OpenVenture"
+        "href": "https://twitter.com/TrueStack"
       },
       {
         "platform": "linkedin",
-        "href": "https://linkedin.com/company/openventure"
-      },
-      {
-        "platform": "facebook",
-        "href": "https://facebook.com/OpenVenture"
-      },
-      {
-        "platform": "github",
-        "href": "https://github.com/OpenVenture"
+        "href": "https://linkedin.com/company/truestack"
       }
     ],
-    "copyright": "© 2024 OpenVenture. All rights reserved.",
+    "copyright": "© 2024 TrueStack. All rights reserved.",
     "bottom_links": [
       {
-        "text": "Status",
-        "href": "/status"
+        "text": "Terms",
+        "href": "/terms"
       },
       {
-        "text": "Sitemap",
-        "href": "/sitemap"
+        "text": "Privacy",
+        "href": "/privacy"
       }
     ]
   },
   "meta": {
-    "title": "OpenVenture - Launch Your Business in Minutes, Not Months",
-    "description": "Generate complete websites with SEO blog content in minutes using AI",
+    "title": "TrueStack - Streamline. in half the time. Work smarter.",
+    "description": "Dedicated account manager for every client",
     "keywords": [
-      "AI website generator",
-      "startup landing page generator",
-      "SEO blog content AI",
-      "launch business fast",
-      "AI content generation"
+      "consulting solutions",
+      "service software",
+      "best service tools",
+      "marketing directors solutions"
     ]
   }
 }

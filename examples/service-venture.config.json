@@ -1,0 +1,95 @@
+{
+  "name": "LegalShield AI",
+  "idea": "An AI-powered legal services platform that provides small businesses with affordable, instant access to legal document creation, contract review, and on-demand attorney consultations. LegalShield AI democratizes legal protection, making it accessible to every entrepreneur.",
+  "tagline": "Legal Protection Made Simple",
+  "domain": "legalshieldai.com",
+  "business": {
+    "industry": "consulting",
+    "target_audience": "Small business owners and entrepreneurs who need legal protection but can't afford traditional law firm retainers or full-time legal counsel",
+    "pain_points": [
+      "Legal fees eating into tight business budgets",
+      "Uncertainty about contract terms and legal risks",
+      "Slow turnaround times from traditional law firms",
+      "No access to legal expertise for quick questions"
+    ],
+    "value_proposition": "Get enterprise-level legal protection at small business prices with AI-powered efficiency",
+    "unique_selling_points": [
+      "AI contract review in under 5 minutes",
+      "500+ legal document templates",
+      "On-demand attorney access starting at $49",
+      "Plain-English legal explanations",
+      "Secure, confidential platform"
+    ]
+  },
+  "brand": {
+    "colors": {
+      "primary": "#1E3A5F",
+      "secondary": "#2C4A6E",
+      "accent": "#C9A227",
+      "background": "#FFFFFF",
+      "text": "#1E3A5F"
+    },
+    "font": {
+      "heading": "Merriweather",
+      "body": "Source Sans Pro"
+    }
+  },
+  "blog": {
+    "article_count": 10,
+    "min_word_count": 2000,
+    "locale": "en-US",
+    "seo": {
+      "primary_keyword": "small business legal services",
+      "secondary_keywords": [
+        "AI contract review",
+        "legal document templates",
+        "affordable legal help",
+        "business contract review",
+        "online legal services"
+      ]
+    },
+    "author": {
+      "name": "Michael Torres, JD",
+      "role": "Chief Legal Officer",
+      "company": "LegalShield AI"
+    }
+  },
+  "content": {
+    "features": [
+      {
+        "title": "Instant Contract Review",
+        "description": "Upload any contract and get a detailed risk analysis, plain-English summary, and negotiation suggestions in minutes."
+      },
+      {
+        "title": "Document Library",
+        "description": "Access 500+ attorney-drafted templates for NDAs, employment agreements, service contracts, and more."
+      },
+      {
+        "title": "Attorney Network",
+        "description": "When you need human expertise, connect with vetted attorneys for affordable consultations starting at $49."
+      }
+    ],
+    "pricing": {
+      "tiers": [
+        {
+          "name": "Starter",
+          "price": "$29/month",
+          "description": "Essential legal tools",
+          "features": ["5 contract reviews/month", "50 document templates", "Email support", "Basic risk alerts"]
+        },
+        {
+          "name": "Business",
+          "price": "$99/month",
+          "description": "Complete legal protection",
+          "features": ["Unlimited contract reviews", "All 500+ templates", "2 attorney consultations", "Priority support", "Custom document drafting"]
+        },
+        {
+          "name": "Enterprise",
+          "price": "$299/month",
+          "description": "For growing companies",
+          "features": ["Everything in Business", "Dedicated attorney", "Compliance monitoring", "Team access (5 users)", "Custom integrations", "SLA guarantee"]
+        }
+      ]
+    }
+  }
+}

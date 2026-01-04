@@ -124,7 +124,88 @@ export function extractJSON(text: string): string {
   throw new Error('No JSON found in response');
 }
 
+/**
+ * Sanitize JSON string to fix common issues from LLM outputs
+ * - Fix bad escape sequences (e.g., unescaped control characters)
+ * - Handle newlines within strings
+ * - Fix unterminated strings
+ */
+function sanitizeJSON(json: string): string {
+  const result = json;
+
+  // First, handle the most common issue: unescaped newlines within strings
+  // We need to process character by character to properly identify string boundaries
+  const chars: string[] = [];
+  let inString = false;
+  let escapeNext = false;
+
+  for (let i = 0; i < result.length; i++) {
+    const char = result[i];
+
+    if (escapeNext) {
+      // Check if this is a valid escape character
+      if (!'"\\/bfnrtu'.includes(char)) {
+        // Invalid escape - double the backslash
+        chars.push('\\');
+      }
+      chars.push(char);
+      escapeNext = false;
+      continue;
+    }
+
+    if (char === '\\' && inString) {
+      escapeNext = true;
+      chars.push(char);
+      continue;
+    }
+
+    if (char === '"' && !escapeNext) {
+      inString = !inString;
+      chars.push(char);
+      continue;
+    }
+
+    if (inString) {
+      // Escape raw control characters within strings
+      if (char === '\n') {
+        chars.push('\\n');
+        continue;
+      }
+      if (char === '\r') {
+        chars.push('\\r');
+        continue;
+      }
+      if (char === '\t') {
+        chars.push('\\t');
+        continue;
+      }
+    }
+
+    chars.push(char);
+  }
+
+  // If we ended inside a string, close it
+  if (inString) {
+    chars.push('"');
+  }
+
+  return chars.join('');
+}
+
 export function parseGeminiJSON<T>(text: string): T {
   const jsonString = extractJSON(text);
-  return JSON.parse(jsonString) as T;
+
+  // First try parsing as-is
+  try {
+    return JSON.parse(jsonString) as T;
+  } catch {
+    // If that fails, try sanitizing the JSON
+    const sanitized = sanitizeJSON(jsonString);
+    try {
+      return JSON.parse(sanitized) as T;
+    } catch (sanitizeError) {
+      // If sanitization also fails, throw original error with context
+      throw new Error(`Failed to parse JSON from Gemini response: ${sanitizeError instanceof Error ? sanitizeError.message : 'Unknown error'}`);
+    }
+  }
 }

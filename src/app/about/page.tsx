@@ -1,15 +1,19 @@
 import { StaticPage } from '@/components/layout/StaticPage';
+import { generateStaticPageMeta } from '@/lib/seo';
+import { getVentureMetadata } from '@/lib/content/loader';
+import type { Metadata } from 'next';
 
-export const metadata = {
-  title: 'About | OpenVenture',
-  description: 'Learn about OpenVenture and our mission to help entrepreneurs launch faster.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return generateStaticPageMeta('about');
+}
 
 export default function AboutPage() {
+  const venture = getVentureMetadata();
+
   return (
-    <StaticPage title="About OpenVenture">
+    <StaticPage title={`About ${venture.name}`}>
       <p>
-        OpenVenture is an AI-powered platform that helps entrepreneurs launch their businesses faster than ever before.
+        {venture.name} is an AI-powered platform that helps entrepreneurs launch their businesses faster than ever before.
         We believe that great ideas shouldn&apos;t be held back by technical barriers or lengthy development cycles.
       </p>
 
@@ -28,7 +32,7 @@ export default function AboutPage() {
 
       <h2 className="mt-8 text-2xl font-bold text-[var(--text-primary)]">The Team</h2>
       <p>
-        OpenVenture was built by a team of engineers and entrepreneurs who experienced firsthand the challenges of
+        {venture.name} was built by a team of engineers and entrepreneurs who experienced firsthand the challenges of
         launching startups. We&apos;ve combined our expertise in AI, web development, and growth marketing to create
         a tool we wish we had when starting our own ventures.
       </p>

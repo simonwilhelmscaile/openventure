@@ -1,21 +1,25 @@
 import { StaticPage } from '@/components/layout/StaticPage';
+import { generateStaticPageMeta } from '@/lib/seo';
+import { getVentureMetadata } from '@/lib/content/loader';
+import type { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Careers | OpenVenture',
-  description: 'Join the OpenVenture team and help entrepreneurs launch faster.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return generateStaticPageMeta('careers');
+}
 
 export default function CareersPage() {
+  const venture = getVentureMetadata();
+
   return (
-    <StaticPage title="Careers at OpenVenture">
+    <StaticPage title={`Careers at ${venture.name}`}>
       <p>
         We&apos;re building the future of startup creation. Join us in democratizing entrepreneurship
         through the power of AI.
       </p>
 
-      <h2 className="mt-8 text-2xl font-bold text-[var(--text-primary)]">Why OpenVenture?</h2>
+      <h2 className="mt-8 text-2xl font-bold text-[var(--text-primary)]">Why {venture.name}?</h2>
       <p>
-        At OpenVenture, you&apos;ll work on cutting-edge AI technology that directly impacts entrepreneurs
+        At {venture.name}, you&apos;ll work on cutting-edge AI technology that directly impacts entrepreneurs
         worldwide. We&apos;re a small, focused team where your contributions make a real difference.
       </p>
 
@@ -49,14 +53,14 @@ export default function CareersPage() {
           <h3 className="text-lg font-semibold text-[var(--text-primary)]">Growth Marketing Lead</h3>
           <p className="mt-1 text-sm text-[var(--text-tertiary)]">Remote · Full-time</p>
           <p className="mt-3">
-            Drive user acquisition and help more entrepreneurs discover OpenVenture.
+            Drive user acquisition and help more entrepreneurs discover {venture.name}.
           </p>
         </div>
       </div>
 
       <h2 className="mt-8 text-2xl font-bold text-[var(--text-primary)]">How to Apply</h2>
       <p>
-        Send your resume and a brief note about why you&apos;re excited about OpenVenture to careers@openventure.app.
+        Send your resume and a brief note about why you&apos;re excited about {venture.name} to careers@{venture.domain}.
         We read every application personally.
       </p>
     </StaticPage>

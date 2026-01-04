@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { getAllArticles, getArticleBySlug } from '@/lib/content/articles';
 import { getVentureMetadata } from '@/lib/content/loader';
 import { ArticleRenderer } from '@/components/blog/ArticleRenderer';
+import { Breadcrumbs } from '@/components/layout/Breadcrumbs';
+import { SchemaScript } from '@/components/layout/SchemaScript';
+import { generateArticleMeta, generateArticlePageSchema } from '@/lib/seo';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -26,10 +29,7 @@ export async function generateMetadata({ params }: PageProps) {
     };
   }
 
-  return {
-    title: `${article.Headline} | ${venture.name} Blog`,
-    description: article.Subtitle,
-  };
+  return generateArticleMeta(article);
 }
 
 export default async function ArticlePage({ params }: PageProps) {
@@ -41,30 +41,46 @@ export default async function ArticlePage({ params }: PageProps) {
     notFound();
   }
 
+  const schema = generateArticlePageSchema(article);
+
   return (
     <main className="min-h-screen bg-[var(--bg-primary)]">
+      {/* Schema.org JSON-LD */}
+      <SchemaScript schema={schema} />
+
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-[var(--border-default)] bg-[var(--bg-primary)]/95 backdrop-blur-sm">
         <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-6">
-          <Link href="/" className="text-xl font-bold text-[var(--text-primary)]">
+          <Link href="/" className="text-xl font-bold text-[var(--text-primary)] py-2 min-h-[44px] flex items-center">
             {venture.name}
           </Link>
-          <nav className="flex items-center gap-6">
+          <nav className="flex items-center gap-2">
             <Link
               href="/"
-              className="text-sm font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+              className="text-sm font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)] px-3 py-3 min-h-[44px] min-w-[44px] flex items-center justify-center"
             >
               Home
             </Link>
             <Link
               href="/blog"
-              className="text-sm font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+              className="text-sm font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)] px-3 py-3 min-h-[44px] min-w-[44px] flex items-center justify-center"
             >
               Blog
             </Link>
           </nav>
         </div>
       </header>
+
+      {/* Breadcrumbs */}
+      <div className="mx-auto max-w-[800px] px-6 pt-8">
+        <Breadcrumbs
+          items={[
+            { name: 'Home', path: '/' },
+            { name: 'Blog', path: '/blog' },
+            { name: article.Headline },
+          ]}
+        />
+      </div>
 
       {/* Article */}
       <ArticleRenderer article={article} />

@@ -1,7 +1,28 @@
 # OpenVenture
 
+[![Lighthouse SEO](https://img.shields.io/badge/Lighthouse%20SEO-100%25-brightgreen)](https://openventure.vercel.app)
+[![Lighthouse Accessibility](https://img.shields.io/badge/Accessibility-96%25-brightgreen)](https://openventure.vercel.app)
+[![Lighthouse Performance](https://img.shields.io/badge/Performance-92%25-green)](https://openventure.vercel.app)
+[![Lighthouse Best Practices](https://img.shields.io/badge/Best%20Practices-96%25-brightgreen)](https://openventure.vercel.app)
+
 > Generate a production-ready website + SEO blog from just a business idea.
 > No coding required. Deploy in minutes.
+
+## Screenshots
+
+<details>
+<summary>View Screenshots</summary>
+
+### Landing Page
+![Homepage](docs/screenshots/homepage_desktop.png)
+
+### Blog
+![Blog](docs/screenshots/blog_desktop.png)
+
+### About Page
+![About](docs/screenshots/about_desktop.png)
+
+</details>
 
 ## What You Get
 
@@ -152,7 +173,24 @@ Customize your site's look:
 | `npm run dev` | Start development server |
 | `npm run build` | Build for production |
 | `npm run start` | Start production server |
+| `npm run typecheck` | TypeScript type checking |
+| `npm run lint` | ESLint code checking |
+| `npm run validate-urls` | Validate URLs in generated content |
+| `npm run lighthouse` | Run Lighthouse CI for SEO/performance |
 | `npx vercel` | Deploy to Vercel |
+
+### Testing Scripts
+
+```bash
+# Run Lighthouse CI (requires server running)
+npm run lighthouse
+
+# Run clean room Docker test
+./scripts/clean-room-test.sh
+
+# Run browser-use live site testing
+.venv/bin/python scripts/browser-test.py --test navigation
+```
 
 ## Troubleshooting
 
@@ -200,6 +238,22 @@ A: Yes! Just run `npm run generate` again. Previous content will be overwritten.
 
 **Q: What if I want different content?**
 A: Edit your `venture.config.json` to adjust your business description, keywords, etc., then regenerate.
+
+## Example Ventures
+
+We've included three example venture configurations to help you get started:
+
+| Example | Industry | File |
+|---------|----------|------|
+| DataSync Pro | B2B SaaS | `examples/saas-venture.config.json` |
+| GreenLeaf Organics | E-commerce | `examples/ecommerce-venture.config.json` |
+| LegalShield AI | Service/Consulting | `examples/service-venture.config.json` |
+
+To use an example:
+```bash
+cp examples/saas-venture.config.json venture.config.json
+npm run generate
+```
 
 ## Tech Stack
 

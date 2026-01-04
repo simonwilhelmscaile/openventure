@@ -46,3 +46,41 @@ jobs:
           name: test-results
           path: test-results/
           retention-days: 7
+
+      - name: Start server for Lighthouse
+        run: |
+          npm run start &
+          sleep 5
+
+      - name: Run Lighthouse CI
+        run: npm run lighthouse || true
+
+      - name: Upload Lighthouse results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lighthouse-results
+          path: .lighthouseci/
+          retention-days: 7
+
+      - name: Setup Python for visual tests
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install visual testing dependencies
+        run: |
+          pip install playwright
+          playwright install chromium
+
+      - name: Run visual regression tests
+        run: python scripts/visual-test.py --url http://localhost:3000
+        continue-on-error: true
+
+      - name: Upload visual test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: visual-test-results
+          path: test-results/screenshots/
+          retention-days: 7

@@ -1,0 +1,94 @@
+{
+  "name": "DataSync Pro",
+  "idea": "An AI-powered data integration platform that automatically connects, syncs, and transforms data across 200+ business applications. DataSync Pro eliminates manual data entry, reduces integration time from weeks to minutes, and ensures real-time data consistency across your entire tech stack.",
+  "tagline": "Connect Everything. Sync Automatically.",
+  "domain": "datasyncpro.com",
+  "business": {
+    "industry": "saas",
+    "target_audience": "Operations managers and IT leaders at mid-market companies (100-1000 employees) who struggle with data silos and manual data entry across multiple business tools",
+    "pain_points": [
+      "Data silos causing inconsistent information across teams",
+      "Hours wasted on manual data entry and reconciliation",
+      "Expensive custom integrations that break with updates",
+      "No real-time visibility into cross-platform data"
+    ],
+    "value_proposition": "Eliminate data silos and manual entry with AI-powered integrations that set up in minutes, not months",
+    "unique_selling_points": [
+      "No-code setup with 200+ pre-built connectors",
+      "AI auto-maps fields and handles data transformation",
+      "Real-time sync with conflict resolution",
+      "Enterprise-grade security with SOC 2 Type II"
+    ]
+  },
+  "brand": {
+    "colors": {
+      "primary": "#0F172A",
+      "secondary": "#1E293B",
+      "accent": "#3B82F6",
+      "background": "#FFFFFF",
+      "text": "#0F172A"
+    },
+    "font": {
+      "heading": "Inter",
+      "body": "Inter"
+    }
+  },
+  "blog": {
+    "article_count": 10,
+    "min_word_count": 2000,
+    "locale": "en-US",
+    "seo": {
+      "primary_keyword": "data integration platform",
+      "secondary_keywords": [
+        "automated data sync",
+        "no-code integration",
+        "business app integration",
+        "real-time data sync",
+        "data pipeline automation"
+      ]
+    },
+    "author": {
+      "name": "Alex Chen",
+      "role": "Head of Product",
+      "company": "DataSync Pro"
+    }
+  },
+  "content": {
+    "features": [
+      {
+        "title": "200+ Connectors",
+        "description": "Pre-built integrations for all major business applications including Salesforce, HubSpot, Shopify, QuickBooks, and more."
+      },
+      {
+        "title": "AI Field Mapping",
+        "description": "Our AI automatically maps fields between applications, handles data transformation, and learns from your corrections."
+      },
+      {
+        "title": "Real-Time Sync",
+        "description": "Changes propagate instantly across all connected systems with intelligent conflict resolution."
+      }
+    ],
+    "pricing": {
+      "tiers": [
+        {
+          "name": "Starter",
+          "price": "$49/month",
+          "description": "For small teams getting started",
+          "features": ["5 app connections", "10,000 syncs/month", "Email support", "Basic analytics"]
+        },
+        {
+          "name": "Professional",
+          "price": "$199/month",
+          "description": "For growing businesses",
+          "features": ["25 app connections", "100,000 syncs/month", "Priority support", "Advanced analytics", "Custom field mapping"]
+        },
+        {
+          "name": "Enterprise",
+          "price": "Custom",
+          "description": "For large organizations",
+          "features": ["Unlimited connections", "Unlimited syncs", "Dedicated support", "Custom integrations", "SSO & SCIM", "SLA guarantee"]
+        }
+      ]
+    }
+  }
+}

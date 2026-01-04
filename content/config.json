@@ -1,31 +1,23 @@
 {
-  "$schema": "./venture.schema.json",
-  "idea": "AI-powered platform that generates production-ready websites and SEO blog content from a business idea",
-  "name": "OpenVenture",
-  "tagline": "Launch Your Business in Minutes, Not Months",
-  "domain": "openventure.vercel.app",
+  "name": "TrueStack",
+  "idea": "TrueStack is a agency platform designed for growing businesses. We solve the problem of poor communication by providing transparent pricing with no hidden fees. Our solution combines cutting-edge technology with intuitive design to deliver exceptional results for our customers.",
+  "tagline": "Streamline. in half the time. Work smarter.",
+  "domain": "truestack.com",
   "business": {
-    "industry": "saas",
-    "category": "Website Generator",
-    "target_audience": "Non-technical entrepreneurs, solo founders, early-stage startups who need a professional web presence quickly",
+    "industry": "professional services",
+    "category": "consulting Platform",
+    "target_audience": "marketing directors",
     "pain_points": [
-      "Building a website takes weeks of development time",
-      "SEO content requires expensive copywriters",
-      "Technical founders waste time on marketing instead of product"
+      "Budget constraints",
+      "Difficulty finding reliable partners",
+      "Inconsistent results from freelancers"
     ],
-    "value_proposition": "Generate complete websites with SEO blog content in minutes using AI",
+    "value_proposition": "Dedicated account manager for every client",
     "unique_selling_points": [
-      "One config file generates entire web presence",
-      "10 SEO-optimized articles included",
-      "Production-ready Next.js code",
-      "One-click Vercel deployment"
+      "Expert team with proven track record",
+      "Results-driven approach with measurable KPIs",
+      "Fast turnaround without sacrificing quality"
     ]
-  },
-  "competitors": {
-    "urls": [],
-    "analyze_design": true,
-    "analyze_copy": true,
-    "analyze_pricing": true
   },
   "brand": {
     "tone": "professional",
@@ -35,9 +27,9 @@
       "trustworthy"
     ],
     "colors": {
-      "primary": "#000000",
+      "primary": "#1e3a5f",
       "secondary": "#1B1B1B",
-      "accent": "#D4C7FF",
+      "accent": "#3498db",
       "background": "#FFFFFF",
       "text": "#000000"
     },
@@ -94,15 +86,14 @@
   },
   "blog": {
     "enabled": true,
-    "article_count": 10,
+    "article_count": 1,
     "locale": "en-US",
     "seo": {
-      "primary_keyword": "AI website generator",
+      "primary_keyword": "consulting solutions",
       "secondary_keywords": [
-        "startup landing page generator",
-        "SEO blog content AI",
-        "launch business fast",
-        "AI content generation"
+        "service software",
+        "best service tools",
+        "marketing directors solutions"
       ],
       "keyword_density": 1.5
     },
@@ -118,9 +109,9 @@
       "internal_linking": true
     },
     "author": {
-      "name": "OpenVenture Team",
-      "role": "AI Content Platform",
-      "company": "OpenVenture",
+      "name": "Editorial Team",
+      "role": "Content Team",
+      "company": "TrueStack",
       "image_url": ""
     }
   },
@@ -131,12 +122,6 @@
     "style": "minimal",
     "format": "webp",
     "quality": 85
-  },
-  "deployment": {
-    "platform": "vercel",
-    "auto_deploy": true,
-    "preview_deployments": true,
-    "custom_domain": ""
   },
   "output": {
     "directory": "./content",
@@ -151,7 +136,7 @@
     "temperature": 0.7,
     "max_retries": 3,
     "rate_limit_delay_ms": 1000,
-    "enable_competitor_analysis": true,
+    "enable_competitor_analysis": false,
     "enable_seo_optimization": true
   }
 }

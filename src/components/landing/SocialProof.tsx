@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { SocialProofContent } from '@/types';
 
 interface SocialProofProps {
@@ -9,7 +10,7 @@ export function SocialProof({ content }: SocialProofProps) {
     <section className="border-y border-[var(--border-default)] bg-[var(--bg-secondary)] py-12">
       <div className="mx-auto max-w-[1200px] px-6">
         {content.headline && (
-          <p className="mb-8 text-center text-sm font-medium uppercase tracking-wide text-[var(--text-tertiary)]">
+          <p className="mb-8 text-center text-sm font-medium uppercase tracking-wide text-[var(--text-secondary)]">
             {content.headline}
           </p>
         )}
@@ -21,14 +22,16 @@ export function SocialProof({ content }: SocialProofProps) {
               className="flex h-8 items-center opacity-50 grayscale transition-all hover:opacity-100 hover:grayscale-0"
             >
               {logo.logo_url ? (
-                <img
+                <Image
                   src={logo.logo_url}
                   alt={logo.alt}
+                  width={120}
+                  height={32}
                   className="h-full w-auto max-w-[120px] object-contain"
                 />
               ) : (
                 <div className="flex h-8 items-center justify-center rounded bg-[var(--bg-tertiary)] px-4">
-                  <span className="text-sm font-medium text-[var(--text-tertiary)]">
+                  <span className="text-sm font-medium text-[var(--text-primary)]">
                     {logo.name}
                   </span>
                 </div>

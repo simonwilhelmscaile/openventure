@@ -61,19 +61,19 @@ export function Navigation({
           {/* Logo/Brand */}
           <Link
             href="/"
-            className="text-lg font-semibold text-[var(--text-primary)] hover:opacity-80 transition-opacity"
+            className="text-lg font-semibold text-[var(--text-primary)] hover:opacity-80 transition-opacity h-[44px] flex items-center"
           >
             {brandName}
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-0">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors px-4 h-[44px] flex items-center justify-center"
               >
                 {item.label}
               </a>
@@ -85,7 +85,7 @@ export function Navigation({
             <a
               href={ctaHref}
               onClick={(e) => handleNavClick(e, ctaHref)}
-              className="inline-flex items-center justify-center rounded-lg bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-[var(--bg-primary)] transition-all hover:opacity-90"
+              className="inline-flex items-center justify-center rounded-lg bg-[var(--color-primary)] px-4 h-[44px] text-sm font-medium text-[var(--bg-primary)] transition-all hover:opacity-90"
             >
               {ctaText}
             </a>
@@ -94,7 +94,7 @@ export function Navigation({
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-[var(--text-primary)]"
+            className="md:hidden w-[44px] h-[44px] flex items-center justify-center text-[var(--text-primary)]"
             aria-label="Toggle menu"
           >
             <div className="w-6 h-5 relative flex flex-col justify-between">
@@ -124,13 +124,13 @@ export function Navigation({
           isMobileMenuOpen ? 'max-h-96 border-b border-[var(--border-default)]' : 'max-h-0'
         }`}
       >
-        <div className="bg-[var(--bg-primary)] px-6 py-4 space-y-4">
+        <div className="bg-[var(--bg-primary)] px-6 py-4 space-y-0">
           {navItems.map((item) => (
             <a
               key={item.label}
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
-              className="block text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              className="flex items-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors h-[44px]"
             >
               {item.label}
             </a>
@@ -138,7 +138,7 @@ export function Navigation({
           <a
             href={ctaHref}
             onClick={(e) => handleNavClick(e, ctaHref)}
-            className="block w-full text-center rounded-lg bg-[var(--color-primary)] px-4 py-3 text-sm font-medium text-[var(--bg-primary)]"
+            className="flex items-center justify-center w-full rounded-lg bg-[var(--color-primary)] px-4 text-sm font-medium text-[var(--bg-primary)] h-[44px] mt-2"
           >
             {ctaText}
           </a>

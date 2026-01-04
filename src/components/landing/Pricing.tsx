@@ -54,11 +54,11 @@ function PricingCard({ tier, isYearly }: { tier: PricingTier; isYearly: boolean 
             }`}
           >
             {feature.included ? (
-              <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             ) : (
-              <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--text-tertiary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="mt-0.5 h-5 w-5 flex-shrink-0 text-[var(--text-tertiary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             )}
@@ -103,11 +103,15 @@ export function Pricing({ content }: PricingProps) {
                 className={`relative h-6 w-12 rounded-full transition-colors ${
                   isYearly ? 'bg-[var(--color-primary)]' : 'bg-[var(--border-default)]'
                 }`}
+                role="switch"
+                aria-checked={isYearly}
+                aria-label="Toggle yearly billing"
               >
                 <span
                   className={`absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform ${
                     isYearly ? 'translate-x-6' : ''
                   }`}
+                  aria-hidden="true"
                 />
               </button>
               <span className={`text-sm ${isYearly ? 'font-medium text-[var(--text-primary)]' : 'text-[var(--text-tertiary)]'}`}>

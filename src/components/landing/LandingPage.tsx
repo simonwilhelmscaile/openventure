@@ -20,9 +20,11 @@ interface LandingPageProps {
   content: LandingPageContent;
   articles?: ArticlePreviewData[];
   domain?: string;
+  industry?: string;
+  primaryColor?: string;
 }
 
-export function LandingPage({ content, articles, domain }: LandingPageProps) {
+export function LandingPage({ content, articles, domain, industry, primaryColor }: LandingPageProps) {
   // Extract tagline from hero subtitle or use venture name
   const tagline = content.hero.subheadline?.split('.')[0] || content.venture_name;
 
@@ -42,6 +44,8 @@ export function LandingPage({ content, articles, domain }: LandingPageProps) {
             tagline={tagline}
             articles={articles}
             domain={domain}
+            industry={industry}
+            primaryColor={primaryColor}
           />
         </section>
         <section id="pricing">

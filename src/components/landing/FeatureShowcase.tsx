@@ -1,6 +1,13 @@
 import Image from 'next/image';
 import type { FeatureShowcaseContent, FeatureShowcase as FeatureShowcaseType } from '@/types';
-import { ConfigPreview, ArticlesPreview, DeployPreview } from '@/components/previews';
+import {
+  ConfigPreview,
+  ArticlesPreview,
+  DeployPreview,
+  DashboardPreview,
+  AppInterfacePreview,
+  WorkflowPreview
+} from '@/components/previews';
 
 interface ArticlePreviewData {
   title: string;
@@ -14,27 +21,74 @@ interface FeatureShowcaseProps {
   tagline?: string;
   articles?: ArticlePreviewData[];
   domain?: string;
+  industry?: string;
+  primaryColor?: string;
 }
 
 function getPreviewComponent(
   showcaseId: string,
+  index: number,
   ventureName?: string,
   tagline?: string,
   articles?: ArticlePreviewData[],
-  domain?: string
+  domain?: string,
+  industry?: string,
+  primaryColor?: string
 ): React.ReactNode {
-  // Match showcase IDs to preview components
-  if (showcaseId.includes('showcase-1') || showcaseId.toLowerCase().includes('config')) {
-    return <ConfigPreview ventureName={ventureName} tagline={tagline} />;
+  // Check if this is OpenVenture itself (generator tool) or a user venture
+  const isOpenVenture = ventureName?.toLowerCase().includes('openventure') ||
+                        industry === 'venture-generator';
+
+  if (isOpenVenture) {
+    // OpenVenture-specific previews (config, articles, deploy)
+    if (showcaseId.includes('showcase-1') || showcaseId.toLowerCase().includes('config')) {
+      return <ConfigPreview ventureName={ventureName} tagline={tagline} />;
+    }
+    if (showcaseId.includes('showcase-2') || showcaseId.toLowerCase().includes('article') || showcaseId.toLowerCase().includes('blog')) {
+      return <ArticlesPreview articles={articles} />;
+    }
+    if (showcaseId.includes('showcase-3') || showcaseId.toLowerCase().includes('deploy')) {
+      return <DeployPreview domain={domain} />;
+    }
   }
-  if (showcaseId.includes('showcase-2') || showcaseId.toLowerCase().includes('article') || showcaseId.toLowerCase().includes('blog')) {
-    return <ArticlesPreview articles={articles} />;
+
+  // For other ventures, use industry-appropriate previews
+  // Cycle through dashboard, app interface, and workflow based on index
+  const previewType = index % 3;
+
+  switch (previewType) {
+    case 0:
+      return (
+        <DashboardPreview
+          ventureName={ventureName}
+          industry={industry}
+          primaryColor={primaryColor}
+        />
+      );
+    case 1:
+      return (
+        <AppInterfacePreview
+          ventureName={ventureName}
+          industry={industry}
+          primaryColor={primaryColor}
+        />
+      );
+    case 2:
+      return (
+        <WorkflowPreview
+          ventureName={ventureName}
+          primaryColor={primaryColor}
+        />
+      );
+    default:
+      return (
+        <DashboardPreview
+          ventureName={ventureName}
+          industry={industry}
+          primaryColor={primaryColor}
+        />
+      );
   }
-  if (showcaseId.includes('showcase-3') || showcaseId.toLowerCase().includes('deploy')) {
-    return <DeployPreview domain={domain} />;
-  }
-  // Default to config preview for first, articles for second, deploy for third
-  return null;
 }
 
 interface ShowcaseItemProps {
@@ -44,16 +98,23 @@ interface ShowcaseItemProps {
   tagline?: string;
   articles?: ArticlePreviewData[];
   domain?: string;
+  industry?: string;
+  primaryColor?: string;
 }
 
-function ShowcaseItem({ showcase, index, ventureName, tagline, articles, domain }: ShowcaseItemProps) {
+function ShowcaseItem({ showcase, index, ventureName, tagline, articles, domain, industry, primaryColor }: ShowcaseItemProps) {
   const isImageLeft = showcase.image_position === 'left';
 
-  // Get dynamic preview based on showcase id or fallback to index-based
-  const previewComponent = getPreviewComponent(showcase.id, ventureName, tagline, articles, domain) || (
-    index === 0 ? <ConfigPreview ventureName={ventureName} tagline={tagline} /> :
-    index === 1 ? <ArticlesPreview articles={articles} /> :
-    <DeployPreview domain={domain} />
+  // Get dynamic preview based on showcase id, industry, or fallback to index-based
+  const previewComponent = getPreviewComponent(
+    showcase.id,
+    index,
+    ventureName,
+    tagline,
+    articles,
+    domain,
+    industry,
+    primaryColor
   );
 
   return (
@@ -117,7 +178,7 @@ function ShowcaseItem({ showcase, index, ventureName, tagline, articles, domain 
   );
 }
 
-export function FeatureShowcase({ content, ventureName, tagline, articles, domain }: FeatureShowcaseProps) {
+export function FeatureShowcase({ content, ventureName, tagline, articles, domain, industry, primaryColor }: FeatureShowcaseProps) {
   return (
     <section className="bg-[var(--bg-secondary)] py-24 md:py-32">
       <div className="mx-auto max-w-[1200px] px-6">
@@ -131,6 +192,8 @@ export function FeatureShowcase({ content, ventureName, tagline, articles, domai
               tagline={tagline}
               articles={articles}
               domain={domain}
+              industry={industry}
+              primaryColor={primaryColor}
             />
           ))}
         </div>

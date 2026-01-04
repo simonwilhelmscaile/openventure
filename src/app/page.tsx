@@ -1,5 +1,5 @@
 import { LandingPage } from '@/components/landing';
-import { loadLandingContent, loadArticlePreviews, getVentureMetadata } from '@/lib/content/loader';
+import { loadLandingContent, loadArticlePreviews, getVentureMetadata, getVentureDetails } from '@/lib/content/loader';
 import { SchemaScript } from '@/components/layout/SchemaScript';
 import { generateHomeMeta, generateHomePageSchema } from '@/lib/seo';
 import type { Metadata } from 'next';
@@ -13,6 +13,7 @@ export default function Home() {
   const schema = generateHomePageSchema();
   const articles = loadArticlePreviews();
   const metadata = getVentureMetadata();
+  const details = getVentureDetails();
 
   return (
     <>
@@ -21,6 +22,8 @@ export default function Home() {
         content={content}
         articles={articles.length > 0 ? articles : undefined}
         domain={metadata.domain}
+        industry={details.industry}
+        primaryColor={details.primaryColor}
       />
     </>
   );

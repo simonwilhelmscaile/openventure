@@ -28,11 +28,12 @@
     "urls": [],
     "analyze_design": true,
     "analyze_copy": true,
-    "max_competitors": 3
+    "analyze_pricing": true
   },
 
   "brand": {
-    "tone": "friendly, caring, trustworthy",
+    "tone": "friendly",
+    "personality": ["caring", "trustworthy", "innovative"],
     "colors": {
       "primary": "#FF6B35",
       "secondary": "#2E4057",
@@ -49,42 +50,77 @@
   "landing_page": {
     "enabled": true,
     "sections": {
-      "hero": { "enabled": true },
-      "social_proof": { "enabled": true, "logos_count": 6 },
-      "features": { "enabled": true, "count": 6 },
-      "feature_showcase": { "enabled": true, "count": 3 },
-      "pricing": { "enabled": true, "tiers_count": 3, "currency": "USD" },
+      "hero": { "enabled": true, "style": "centered", "include_video": false },
+      "social_proof": { "enabled": true, "logo_count": 6 },
+      "features": { "enabled": true, "count": 6, "layout": "grid" },
+      "feature_showcase": { "enabled": true, "count": 3, "layout": "alternating" },
+      "pricing": { "enabled": true, "tiers": 3, "currency": "USD", "billing_period": "monthly" },
       "testimonials": { "enabled": true, "count": 3 },
       "faq": { "enabled": true, "count": 6 },
-      "cta": { "enabled": true },
+      "cta": { "enabled": true, "style": "gradient" },
       "footer": { "enabled": true, "columns": 4 }
     }
   },
 
   "blog": {
     "enabled": true,
-    "article_count": 7,
+    "article_count": 5,
     "locale": "en-US",
     "author": {
       "name": "Dr. Sarah Chen",
       "role": "Veterinary Advisor",
-      "company": "PetPal AI"
+      "company": "PetPal AI",
+      "image_url": ""
     },
     "seo": {
       "primary_keyword": "pet care AI",
       "secondary_keywords": ["pet health tracking", "dog nutrition", "cat care tips", "pet wellness"],
-      "keyword_density": 0.02
+      "keyword_density": 1.5
     },
     "content": {
       "min_word_count": 2000,
       "max_word_count": 3500,
-      "sections_per_article": 7
+      "sections_per_article": 7,
+      "include_tldr": true,
+      "include_key_takeaways": true,
+      "include_tables": true,
+      "include_faqs": true,
+      "include_sources": true,
+      "internal_linking": true
     }
+  },
+
+  "images": {
+    "generate_hero": true,
+    "generate_feature_icons": true,
+    "generate_blog_headers": true,
+    "style": "minimal",
+    "format": "webp",
+    "quality": 85
   },
 
   "deployment": {
     "platform": "vercel",
     "auto_deploy": true,
-    "branch": "main"
+    "preview_deployments": true,
+    "custom_domain": ""
+  },
+
+  "output": {
+    "directory": "./content",
+    "formats": {
+      "landing_page": "tsx",
+      "blog_articles": "json",
+      "images": "webp"
+    }
+  },
+
+  "advanced": {
+    "gemini_model": "gemini-2.0-flash-exp",
+    "temperature": 0.7,
+    "max_retries": 3,
+    "rate_limit_delay_ms": 1000,
+    "enable_competitor_analysis": false,
+    "enable_seo_optimization": true
   }
 }

@@ -189,6 +189,25 @@ export function getVentureMetadata(): { name: string; tagline: string; domain: s
 }
 
 /**
+ * Get venture details for component rendering
+ */
+export function getVentureDetails(): { industry: string; primaryColor: string } {
+  const config = loadVentureConfig();
+
+  if (config) {
+    return {
+      industry: config.business?.industry || 'technology',
+      primaryColor: config.brand?.colors?.primary || '#6366f1',
+    };
+  }
+
+  return {
+    industry: 'technology',
+    primaryColor: '#6366f1',
+  };
+}
+
+/**
  * Article preview for landing page showcase
  */
 export interface ArticlePreview {

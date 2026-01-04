@@ -46,6 +46,7 @@ interface Args {
   output?: string;
   interactive?: boolean;
   apiKey?: string;
+  yes?: boolean;  // Auto-confirm generation
 }
 
 function parseArgs(): Args {
@@ -62,6 +63,8 @@ function parseArgs(): Args {
       args.apiKey = arg.replace('--api-key=', '');
     } else if (arg === '--interactive' || arg === '-i') {
       args.interactive = true;
+    } else if (arg === '--yes' || arg === '-y') {
+      args.yes = true;
     }
   }
 
@@ -393,8 +396,8 @@ async function main(): Promise<void> {
     console.log(`✅ Config saved to: ${path.relative(process.cwd(), outputPath)}`);
     console.log('');
 
-    // Ask if user wants to generate now
-    const shouldGenerate = await askYesNo('Generate your venture now? (landing page + blog articles)');
+    // Ask if user wants to generate now (skip if --yes flag)
+    const shouldGenerate = args.yes || await askYesNo('Generate your venture now? (landing page + blog articles)');
 
     if (shouldGenerate) {
       await runFullGeneration(outputPath);

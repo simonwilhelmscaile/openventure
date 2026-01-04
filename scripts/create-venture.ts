@@ -19,6 +19,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as readline from 'readline';
+import { spawn } from 'child_process';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { createVentureConfigPrompt } from '../src/lib/gemini/prompts/generate-venture-config';
 
@@ -104,6 +105,93 @@ async function getInteractiveInput(): Promise<string> {
       }
     });
   });
+}
+
+async function askYesNo(question: string): Promise<boolean> {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  return new Promise((resolve) => {
+    rl.question(`${question} (Y/n): `, (answer) => {
+      rl.close();
+      resolve(answer.toLowerCase() !== 'n');
+    });
+  });
+}
+
+async function runCommand(command: string, args: string[], description: string): Promise<boolean> {
+  console.log(`\n${description}...\n`);
+
+  return new Promise((resolve) => {
+    const proc = spawn(command, args, {
+      stdio: 'inherit',
+      shell: true,
+      cwd: process.cwd(),
+    });
+
+    proc.on('close', (code) => {
+      resolve(code === 0);
+    });
+
+    proc.on('error', (err) => {
+      console.error(`Error running ${command}:`, err);
+      resolve(false);
+    });
+  });
+}
+
+async function runFullGeneration(configPath: string): Promise<void> {
+  console.log('');
+  console.log('═══════════════════════════════════════════════════════════════════════');
+  console.log('                    Generating Your Venture');
+  console.log('═══════════════════════════════════════════════════════════════════════');
+
+  // Step 1: Generate content
+  const generateSuccess = await runCommand(
+    'npm',
+    ['run', 'generate', '--', `--config=${configPath}`],
+    '📝 Step 1/3: Generating landing page and blog articles'
+  );
+
+  if (!generateSuccess) {
+    console.error('\n❌ Generation failed. Please check the errors above.');
+    console.log('\nYou can retry with:');
+    console.log(`   npm run generate -- --config=${configPath}`);
+    return;
+  }
+
+  // Step 2: Build
+  const buildSuccess = await runCommand(
+    'npm',
+    ['run', 'build'],
+    '🔨 Step 2/3: Building production site'
+  );
+
+  if (!buildSuccess) {
+    console.error('\n❌ Build failed. Please check the errors above.');
+    return;
+  }
+
+  // Step 3: Start dev server
+  console.log('');
+  console.log('═══════════════════════════════════════════════════════════════════════');
+  console.log('                    🎉 Your Venture is Ready!');
+  console.log('═══════════════════════════════════════════════════════════════════════');
+  console.log('');
+  console.log('  Starting preview server...');
+  console.log('');
+  console.log('  📍 Open in browser: http://localhost:3000');
+  console.log('');
+  console.log('  Press Ctrl+C to stop the server');
+  console.log('');
+  console.log('  When ready to deploy:');
+  console.log('     npx vercel --prod');
+  console.log('');
+
+  // Start the server (this will keep running)
+  await runCommand('npm', ['run', 'start'], '🚀 Step 3/3: Starting server');
 }
 
 async function promptForApiKey(): Promise<string> {
@@ -305,21 +393,29 @@ async function main(): Promise<void> {
     console.log(`✅ Config saved to: ${path.relative(process.cwd(), outputPath)}`);
     console.log('');
 
-    console.log('═══════════════════════════════════════════════════════════════════════');
-    console.log('                              Next Steps');
-    console.log('═══════════════════════════════════════════════════════════════════════');
-    console.log('');
-    console.log('  1. Review the generated config and adjust if needed');
-    console.log('');
-    console.log('  2. Generate your venture:');
-    console.log(`     npm run generate -- --config=${path.relative(process.cwd(), outputPath)}`);
-    console.log('');
-    console.log('  3. Preview locally:');
-    console.log('     npm run build && npm run start');
-    console.log('');
-    console.log('  4. Deploy to Vercel:');
-    console.log('     npx vercel --prod');
-    console.log('');
+    // Ask if user wants to generate now
+    const shouldGenerate = await askYesNo('Generate your venture now? (landing page + blog articles)');
+
+    if (shouldGenerate) {
+      await runFullGeneration(outputPath);
+    } else {
+      console.log('');
+      console.log('═══════════════════════════════════════════════════════════════════════');
+      console.log('                              Next Steps');
+      console.log('═══════════════════════════════════════════════════════════════════════');
+      console.log('');
+      console.log('  1. Review the generated config and adjust if needed');
+      console.log('');
+      console.log('  2. Generate your venture:');
+      console.log(`     npm run generate -- --config=${path.relative(process.cwd(), outputPath)}`);
+      console.log('');
+      console.log('  3. Preview locally:');
+      console.log('     npm run build && npm run start');
+      console.log('');
+      console.log('  4. Deploy to Vercel:');
+      console.log('     npx vercel --prod');
+      console.log('');
+    }
   } catch (error) {
     console.error('');
     console.error('❌ Error generating venture config:', error);

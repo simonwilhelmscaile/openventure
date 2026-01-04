@@ -1,0 +1,90 @@
+{
+  "$schema": "../venture.schema.json",
+
+  "idea": "AI-powered pet care platform that helps pet owners manage their pet's health, nutrition, and activities",
+  "name": "PetPal AI",
+  "tagline": "Your Pet's Best Digital Friend",
+  "domain": "petpal-ai.vercel.app",
+
+  "business": {
+    "industry": "pet-tech",
+    "category": "Pet Care Platform",
+    "target_audience": "Pet owners who want to provide the best care for their furry friends using technology",
+    "pain_points": [
+      "Tracking pet health records is disorganized",
+      "Finding the right nutrition plan is confusing",
+      "Scheduling vet appointments is time-consuming"
+    ],
+    "value_proposition": "AI-powered companion that helps you understand and care for your pet better",
+    "unique_selling_points": [
+      "AI health monitoring and alerts",
+      "Personalized nutrition recommendations",
+      "Vet appointment scheduling",
+      "Activity tracking and insights"
+    ]
+  },
+
+  "competitors": {
+    "urls": [],
+    "analyze_design": true,
+    "analyze_copy": true,
+    "max_competitors": 3
+  },
+
+  "brand": {
+    "tone": "friendly, caring, trustworthy",
+    "colors": {
+      "primary": "#FF6B35",
+      "secondary": "#2E4057",
+      "accent": "#7CB518",
+      "background": "#FFFFFF",
+      "text": "#1A1A1A"
+    },
+    "fonts": {
+      "heading": "Inter",
+      "body": "Inter"
+    }
+  },
+
+  "landing_page": {
+    "enabled": true,
+    "sections": {
+      "hero": { "enabled": true },
+      "social_proof": { "enabled": true, "logos_count": 6 },
+      "features": { "enabled": true, "count": 6 },
+      "feature_showcase": { "enabled": true, "count": 3 },
+      "pricing": { "enabled": true, "tiers_count": 3, "currency": "USD" },
+      "testimonials": { "enabled": true, "count": 3 },
+      "faq": { "enabled": true, "count": 6 },
+      "cta": { "enabled": true },
+      "footer": { "enabled": true, "columns": 4 }
+    }
+  },
+
+  "blog": {
+    "enabled": true,
+    "article_count": 7,
+    "locale": "en-US",
+    "author": {
+      "name": "Dr. Sarah Chen",
+      "role": "Veterinary Advisor",
+      "company": "PetPal AI"
+    },
+    "seo": {
+      "primary_keyword": "pet care AI",
+      "secondary_keywords": ["pet health tracking", "dog nutrition", "cat care tips", "pet wellness"],
+      "keyword_density": 0.02
+    },
+    "content": {
+      "min_word_count": 2000,
+      "max_word_count": 3500,
+      "sections_per_article": 7
+    }
+  },
+
+  "deployment": {
+    "platform": "vercel",
+    "auto_deploy": true,
+    "branch": "main"
+  }
+}

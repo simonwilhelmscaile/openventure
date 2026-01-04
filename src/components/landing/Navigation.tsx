@@ -22,7 +22,7 @@ const navItems: NavItem[] = [
 ];
 
 export function Navigation({
-  brandName = 'OpenVenture',
+  brandName = 'YourBrand',
   ctaText = 'Get Started',
   ctaHref = '#pricing'
 }: NavigationProps) {

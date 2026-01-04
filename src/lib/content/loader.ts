@@ -182,9 +182,9 @@ export function getVentureMetadata(): { name: string; tagline: string; domain: s
   }
 
   return {
-    name: 'OpenVenture',
-    tagline: 'Launch Your Business in Minutes, Not Months',
-    domain: 'openventure.vercel.app',
+    name: 'Your Venture',
+    tagline: 'Configure your venture in venture.config.json',
+    domain: 'yourventure.vercel.app',
   };
 }
 

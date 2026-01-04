@@ -64,7 +64,7 @@
 
   "blog": {
     "enabled": true,
-    "article_count": 5,
+    "article_count": 20,
     "locale": "en-US",
     "author": {
       "name": "Dr. Sarah Chen",

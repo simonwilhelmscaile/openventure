@@ -10,11 +10,13 @@
     "typecheck": "tsc --noEmit",
     "test": "playwright test",
     "generate": "npx tsx scripts/generate.ts",
+    "validate-links": "npx tsx scripts/validate-all-links.ts",
     "validate-urls": "npx tsx scripts/validate-urls.ts",
     "score-articles": "npx tsx scripts/score-articles.ts",
     "lighthouse": "lhci autorun",
     "lighthouse:collect": "lhci collect --url=http://localhost:3000/",
-    "lighthouse:assert": "lhci assert"
+    "lighthouse:assert": "lhci assert",
+    "docker-test": "bash scripts/docker-clean-room-test.sh"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

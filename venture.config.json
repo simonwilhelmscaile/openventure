@@ -96,7 +96,7 @@
 
   "blog": {
     "enabled": true,
-    "article_count": 10,
+    "article_count": 20,
     "locale": "en-US",
     "seo": {
       "primary_keyword": "AI website generator",

@@ -1,0 +1,34 @@
+# Dependencies
+node_modules
+
+# Build output
+.next
+out
+dist
+
+# Generated content (will be regenerated in test)
+content
+
+# Test results
+test-results
+playwright-report
+test-venture.config.json
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Misc
+*.log
+*.md
+!README.md

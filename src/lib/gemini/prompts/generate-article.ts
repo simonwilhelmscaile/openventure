@@ -101,18 +101,35 @@ CONTENT GUIDELINES:
 - Be authoritative but accessible
 - Naturally include keywords (1-2% density)
 
-INTERNAL LINKING:
+INTERNAL LINKING RULES (CRITICAL):
 - Include 3-5 internal link opportunities in the content
-- Valid internal links: /blog, /#features, /#pricing, /#faq, /about, /contact
-- DO NOT link to /pricing, /features, /faq (these pages don't exist, use /#pricing etc.)
+- VALID internal links (use EXACTLY these formats):
+  - Homepage sections: /#features, /#pricing, /#faq (WITH hash!)
+  - Pages: /about, /contact, /blog, /privacy, /terms
+- INVALID internal links (NEVER use these):
+  - /pricing, /features, /faq (WITHOUT hash - these return 404!)
+  - /docs, /help, /support, /dashboard (these pages don't exist)
 - Use descriptive anchor text (never "click here")
 - Format: [anchor text](/path) or [anchor text](/#section)
 
-EXTERNAL CITATIONS:
-- Include 5-10 authoritative external source references
-- Link to: research papers, industry reports, reputable sources
-- Use descriptive anchor text for citations
-- Prefer: .edu, .gov, major publications, industry leaders
+EXTERNAL LINK RULES (CRITICAL - FOLLOW EXACTLY):
+- ONLY link to well-known, STABLE sources that will exist for years
+- ALLOWED sources:
+  - Wikipedia articles (e.g., https://en.wikipedia.org/wiki/Topic)
+  - Official government sites (.gov domains)
+  - Major news outlets: nytimes.com, bbc.com, forbes.com, techcrunch.com
+  - Official company websites (apple.com, google.com, microsoft.com)
+  - Academic institutions (.edu domains)
+  - Official documentation sites (docs.python.org, developer.mozilla.org)
+- FORBIDDEN sources (these often return 404):
+  - Random blog posts or Medium articles
+  - Research papers with complex URLs (DOIs, arXiv)
+  - Startup websites (they change/die frequently)
+  - URL shorteners (bit.ly, t.co)
+  - Any URL you are not 100% certain exists
+- If unsure whether a URL exists, DO NOT include it
+- It's better to have fewer links than broken links
+- Maximum 3-5 external links per article
 
 OUTPUT FORMAT:
 Return ONLY valid JSON:

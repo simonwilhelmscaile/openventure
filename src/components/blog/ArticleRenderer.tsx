@@ -1,10 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import type { Article } from '@/lib/content/types';
 import { getArticleSections, getKeyTakeaways } from '@/lib/content/articles';
 import { loadVentureConfig, getVentureMetadata } from '@/lib/content/loader';
-import { TableOfContents } from './TableOfContents';
 import { ShareButtons } from './ShareButtons';
 import { FAQAccordion } from './FAQAccordion';
 

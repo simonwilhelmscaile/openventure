@@ -1,0 +1,33 @@
+# OpenVenture Clean-Room Test Environment
+# Tests the full generation pipeline from scratch
+
+FROM node:20-slim
+
+# Install dependencies for Playwright and general tools
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files first for better caching
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy the rest of the application
+COPY . .
+
+# Create a test venture config (will be overwritten by test script)
+RUN mkdir -p /app/test-output
+
+# Set environment for testing
+ENV NODE_ENV=test
+ENV CI=true
+
+# Default command runs the test script
+CMD ["bash", "scripts/docker-test-runner.sh"]
